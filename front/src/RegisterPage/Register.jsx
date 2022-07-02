@@ -114,16 +114,16 @@ function Register() {
                 <div className={style.infoWrap}>
                     <div className={style.photo}>
                         {imgUrl &&
-                            <img src={imgUrl} style={{marginBottom: "8px", width: "200px"}}/>
+                        <img src={imgUrl} style={{marginBottom: "8px", width: "200px"}}/>
                         }
                         <p>
-                        <label htmlFor="urlImg">이미지</label>
-                        <input
-                            type="text"
-                            id="urlImg"
-                            placeholder="이미지 주소를 입력하세요"
-                            value={imgUrl}
-                            onChange={(e) => setImgUrl(e.target.value)} /></p>
+                            <label htmlFor="urlImg">이미지</label>
+                            <input
+                                type="text"
+                                id="urlImg"
+                                placeholder="이미지 주소를 입력하세요"
+                                value={imgUrl}
+                                onChange={(e) => setImgUrl(e.target.value)} /></p>
                         {/* <input
                             type="file"
                             accept="image/*"
