@@ -1,7 +1,37 @@
 import React, { Component } from 'react'
+import axios from "axios";
 
-class Banner extends Component {
-    render() {
+function Banner() {
+    const animalName="길동이"
+    var data = {
+        animalName: "길동이"
+    }
+    axios.post('http://hana-umc.shop:8080/test', data)
+        .then(function(response){
+            console.log(response);
+        })
+        .catch(function(error){
+            console.log(error);
+        });
+    // const fetchAddClass = async () => {
+    //     try {
+    //         // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+    //         axios.post(
+    //             'http://hana-umc.shop:8080/test',{
+    //                 headers:{
+    //                     "Content-Type" : "application/json",
+    //                     "Access-Control-Allow-Origin" : "*",
+    //                 },
+    //                 widthCredentials: true,
+    //             })
+    //             .then(res =>{
+    //                 console.log("성공");// 데이터는 response.data 안에 들어있습니다.
+    //                 }
+    //             )
+    //     } catch (e) {
+    //         console.log(e);
+    //     }
+    // };
         return (
             <section className="container-banner">
                     <a href="#detail">
@@ -16,7 +46,6 @@ class Banner extends Component {
 </p>
             </section>
         )
-    }
 }
 
 export default Banner

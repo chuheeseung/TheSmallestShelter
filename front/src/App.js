@@ -1,21 +1,18 @@
-import React from "react";
-// import logo from './logo.svg';
-import "./DetailPage/Main.css";
-import Banner from "./DetailPage/Banner";
-import Posts from "./DetailPage/Posts";
-import Slider from "./DetailPage/Slider";
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import DetailScreen from './Screen/DetailScreen';
+import ListviewScreen from './Screen/ListviewScreen';
+import RegisterScreen from "./Screen/RegisterScreen";
 
-function App() {
-  return (
-    <div className="App">
-      <Banner />
-      <br />
-      <hr />
-      <Posts />
-      <hr />
-      <Slider />
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/detail" element={<DetailScreen />} />
+                <Route path="/listview" element={<ListviewScreen />} />
+                <Route path="/register" element={<RegisterScreen />} />
+            </Routes>
+        </BrowserRouter>
+    );
+};
 
 export default App;

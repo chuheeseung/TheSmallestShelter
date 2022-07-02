@@ -48,7 +48,7 @@ export const Card = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 300px;
-  width: 240px;
+  width: 300px;
   background-color: white;
   box-shadow: -5px 4px 74px -16px rgba(0, 0, 0, 0.15);
   transition: transform 1s;
@@ -78,7 +78,7 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   background-color: #242a3a;
   position: absolute;
-  width: 350px;
+  width: 200px;
   left: 0;
   height: 400px;
 `;
