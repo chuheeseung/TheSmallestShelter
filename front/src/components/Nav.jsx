@@ -5,7 +5,8 @@ function Nav() {
   return (
     <nav className={style.navigation}>
       <div className={style.navLeft}>
-        <h1 className={style.logo}>세작소</h1>
+      <Link to="/listview" style={{ textDecoration: "none", color: "inherit" }}>
+        <h1 className={style.logo}>세작소</h1></Link>
         <Link to="/register" style={{ textDecoration: "none", color: "inherit" }}>
           <span className={style.register}>등록하기</span></Link>
       </div>
