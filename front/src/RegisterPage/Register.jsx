@@ -44,7 +44,8 @@ function Register() {
     }
 
     const onChangeManager = (e) => {
-        setManager(e.target.value);
+        let manager = parseInt(e.target.value)
+        setManager(manager);
     };
 
     const onChangeCheck = (e) => {
@@ -57,11 +58,13 @@ function Register() {
     }
 
     const onChangeAge = (e) => {
-        let age = parseInt(e.target.value)
-        setAge(age);
+        // let age = parseInt(e.target.value)
+        setAge(e.target.value);
     }
     const onSubmit = async (e) => {
         e.preventDefault();
+        console.log(imgUrl)
+        console.log(typeof imgUrl)
         const res = await axios({
             headers: {
                 withCredentials: true,
@@ -73,7 +76,7 @@ function Register() {
             data: {
                 name: name,
                 age: age,
-                organization: gender,
+                organization: manager,
                 socialization: checkValArr[0][0],
                 anxiety: checkValArr[1][1],
                 train: checkValArr[2][2],
@@ -145,7 +148,7 @@ function Register() {
                                 placeholder="이름을 입력하세요"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)} />
-                            <Select
+                            {/* <Select
                                 labelInValue
                                 defaultValue={{ value: "0", label: "성별" }}
                                 style={{
@@ -157,7 +160,7 @@ function Register() {
                                 <Option value="1">암컷</Option>
                                 <Option value="2">수컷</Option>
                                 <Option value="3">중성</Option>
-                            </Select>
+                            </Select> */}
                             <Select
                                 labelInValue
                                 defaultValue={{ value: "0", label: "종류" }}
