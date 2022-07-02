@@ -1,12 +1,10 @@
 import '../App.css';
 import "antd/dist/antd.min.css";
-import { dummy } from '../ListviewPage/dataDummy';
 import { Layout } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
 import Photo from '../ListviewPage/photo';
 import axios from "axios";
 import {useEffect,useState} from "react";
-import Nav from "../components/Nav";
 
 function ListviewScreen() {
     const [data,setData]=useState([]);
