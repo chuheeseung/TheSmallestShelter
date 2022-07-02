@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import style from "./Nav.module.css";
 
 function Nav() {
@@ -6,7 +7,7 @@ function Nav() {
     <nav className={style.navigation}>
       <div className={style.navLeft}>
         <h1 className={style.logo}>세작소</h1>
-        <span className={style.register}>등록하기</span>
+        <Link to="/register" style={{textDecoration: "none", color: "inherit"}}><span className={style.register}>등록하기</span></Link>
       </div>
       <div className={style.navRight}>
         <ul>
@@ -17,6 +18,7 @@ function Nav() {
       </div>
     </nav>
   );
+
 }
 
 export default Nav;
