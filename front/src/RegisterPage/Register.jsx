@@ -3,44 +3,87 @@ import style from './Register.module.css';
 import UploadImg from './UploadImg';
 import { PlusOutlined } from '@ant-design/icons';
 import { Divider, Input, Select, Space, Typography } from 'antd';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const { Option } = Select;
 let index = 0;
 
 
 function Register() {
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [age, setAge] = useState(0);
+    const [gender, setGender] = useState(0);
+    const [species, setSpecies] = useState("");
     const [items, setItems] = useState(["홍염", "파보", "코로나", "슬개골",]);
     const [diseaseName, setDiseaseName] = useState("");
     const [selectedItems, setSelectedItems] = useState([]);
     const filteredOptions = items.filter((o) => !selectedItems.includes(o));
     const [health, setHealth] = useState("");
-    const [manager, setManager] = useState("");
-    const [check, setCheck] = useState("");
-    // const [check, setCheck] = useState({
-    //   "사회화": "",
-    //   "분리불안": "",
-    //   "베변 훈련": "",
-    //   "짖음": "",
-    //   "입질": "",
-    // });
-
+    const [manager, setManager] = useState(1);
+    const [checkValArr, setCheckValArr] = useState([]);
+    const managerArr = [{ name: "임보 단체", value: 1 }, { name: "개인", value: 2 }];
     const checkArr = ["사회화", "분리불안", "배변 훈련", "짖음", "입질"];
-    const checkList = ["완벽해요", "연습중이에요", "아직 부족해요"];
+    const checkObj = [
+        { name: "완벽해요", value: 1 },
+        { name: "연습중이에요", value: 2 },
+        { name: "아직 부족해요", value: 3 }
+    ]
+    const [imgList, setImgList] = useState("");
+    const [file, setFile] = useState("");
+    const [imgUrl, setImgUrl] = useState("");
+
+    const onChangeGender = (valueObj) => {
+        let value = parseInt(valueObj.value);
+        setGender(value);
+    }
+
+    const onChangeSpecies = (valueObj) => {
+        let value = valueObj.value;
+        setSpecies(value);
+    }
 
     const onChangeManager = (e) => {
         setManager(e.target.value);
     };
 
     const onChangeCheck = (e) => {
-        setCheck(`${e.target.name}-${e.target.value}`)
-        console.log(`${e.target.name}-${e.target.value} `);
+        const { id, value } = e.target;
+        const result = { [id]: value };
+        console.log(result)
+
+        setCheckValArr([...checkValArr, result]);
+        console.log(checkValArr)
     }
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        console.log(`이름 ${name}, 나이 ${age}, 질병 ${selectedItems}, 검진 결과 ${health}, 관리자 ${manager}, 체크 ${check}`)
+
+        const res = await axios({
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+            method: 'post',
+            url: 'http://hana-umc.shop:8080/new',
+            data: {
+                name: name,
+                age: age,
+                organization: gender,
+                socialization: checkValArr[0][0],
+                anxiety: checkValArr[1][1],
+                train: checkValArr[2][2],
+                bark: checkValArr[3][3],
+                bite: checkValArr[3][3],
+                illness: selectedItems,
+                mainImg: imgUrl,
+                species: species,
+            }
+        })
+        if (res.data) {
+            alert('Added Data');
+        }
+        alert("정보가 등록되었습니다.");
+        navigate('/listview');
     }
 
     const onNameChange = (event) => {
@@ -53,23 +96,78 @@ function Register() {
         setDiseaseName('');
     };
 
+    const ImgUploadFunc = (x) => {
+        setImgList(JSON.stringify(x));
+    };
+
+    const onChangeImg = async (e) => {
+        e.preventDefault();
+
+        if (e.target.files) {
+            // const uploadFile = e.target.files[0]
+            setFile(e.target.files[0]);
+        }
+    }
     return (
         <div className={style.container}>
             <form onSubmit={onSubmit}>
                 <div className={style.infoWrap}>
-                    <div className={style.photo}><UploadImg /></div>
+                    <div className={style.photo}>
+                        {imgUrl &&
+                        <img src={imgUrl} style={{marginBottom: "8px", width: "200px"}}/>
+                        }
+                        <p>
+                            <label htmlFor="urlImg">이미지</label>
+                            <input
+                                type="text"
+                                id="urlImg"
+                                placeholder="이미지 주소를 입력하세요"
+                                value={imgUrl}
+                                onChange={(e) => setImgUrl(e.target.value)} /></p>
+                        {/* <input
+                            type="file"
+                            accept="image/*"
+                            multiple="multiple"
+                            required
+                            onChange={onChangeImg} /> */}
+                    </div>
                     <div className={style.info}>
                         <p>
-                            <label for="name">이름</label>
+                            <label htmlFor="name">이름</label>
                             <input
                                 type="text"
                                 id="name"
                                 placeholder="이름을 입력하세요"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)} />
+                            <Select
+                                labelInValue
+                                defaultValue={{ value: "0", label: "성별" }}
+                                style={{
+                                    marginLeft: "20px",
+                                    width: "80px",
+                                }}
+                                onChange={onChangeGender}
+                            >
+                                <Option value="1">암컷</Option>
+                                <Option value="2">수컷</Option>
+                                <Option value="3">중성</Option>
+                            </Select>
+                            <Select
+                                labelInValue
+                                defaultValue={{ value: "0", label: "종류" }}
+                                style={{
+                                    marginLeft: "20px",
+                                    width: "120px",
+                                }}
+                                onChange={onChangeSpecies}
+                            >
+                                <Option value="강아지">강아지</Option>
+                                <Option value="고양이">고양이</Option>
+                            </Select>
                         </p>
                         <p>
-                            <label for="age">나이</label>
+                            <label htmlFor="age">나이</label>
                             <input
                                 type="number"
                                 id="age"
@@ -122,37 +220,43 @@ function Register() {
                                 ))}
                             </Select>
                         </p>
-                        <p className={style.textarea}>
-                            <label for="health">건강검진</label>
+                        {/* <p className={style.textarea}>
+                            <label htmlFor="health">건강검진</label>
                             <textarea
                                 id="health"
                                 placeholder="건강검진 결과를 입력하세요"
                                 value={health}
                                 onChange={(e) => setHealth(e.target.value)} />
-                        </p>
+                        </p> */}
                         <p>
-                            <label for="manager">관리자</label>
-                            <input type='radio'
-                                   name='manager'
-                                   value='임보 단체'
-                                   onChange={onChangeManager} />임보 단체
-                            <input type='radio'
-                                   name='manager'
-                                   value='개인'
-                                   onChange={onChangeManager} />개인
+                            <label htmlFor="manager">관리자</label>
+                            {
+                                managerArr.map((manager) => (
+                                    <label>
+                                        <input
+                                            id={manager}
+                                            type='radio'
+                                            name={manager}
+                                            value={manager.value}
+                                            onChange={onChangeManager}
+                                        />{manager.name} </label>
+                                ))
+                            }
                         </p>
                         {
-                            checkArr.map((item) => (
+                            checkArr.map((item, idx) => (
                                 <p className={style.checkList}>
                                     <span>{item}</span>
                                     {
-                                        checkList.map((c) => (
+                                        checkObj.map((check) => (
                                             <label>
-                                                <input type='radio'
-                                                       name={item}
-                                                       value={c}
-                                                       onChange={onChangeCheck}
-                                                />{c} </label>
+                                                <input
+                                                    id={idx}
+                                                    type='radio'
+                                                    name={idx}
+                                                    value={check.value}
+                                                    onChange={onChangeCheck}
+                                                />{check.name} </label>
                                         ))
                                     }
                                 </p>
