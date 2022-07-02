@@ -49,19 +49,24 @@ function Register() {
 
     const onChangeCheck = (e) => {
         const { id, value } = e.target;
-        const result = { [id]: value };
+        const result = { [id]:  parseInt(value) };
         console.log(result)
 
         setCheckValArr([...checkValArr, result]);
         console.log(checkValArr)
     }
 
+    const onChangeAge = (e) => {
+        let age = parseInt(e.target.value)
+        setAge(age);
+    }
     const onSubmit = async (e) => {
         e.preventDefault();
-
         const res = await axios({
             headers: {
-                "Content-Type": "multipart/form-data",
+                withCredentials: true,
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                'Accept': 'application/json',
             },
             method: 'post',
             url: 'http://hana-umc.shop:8080/new',
@@ -73,7 +78,7 @@ function Register() {
                 anxiety: checkValArr[1][1],
                 train: checkValArr[2][2],
                 bark: checkValArr[3][3],
-                bite: checkValArr[3][3],
+                bite: checkValArr[4][4],
                 illness: selectedItems,
                 mainImg: imgUrl,
                 species: species,
@@ -83,7 +88,7 @@ function Register() {
             alert('Added Data');
         }
         alert("정보가 등록되었습니다.");
-        navigate('/listview');
+        // navigate('/listview');
     }
 
     const onNameChange = (event) => {
@@ -173,7 +178,7 @@ function Register() {
                                 id="age"
                                 placeholder="나이를 입력하세요"
                                 value={age}
-                                onChange={(e) => setAge(e.target.value)} />
+                                onChange={onChangeAge} />
                         </p>
                         <p>
                             <span>질병</span>
