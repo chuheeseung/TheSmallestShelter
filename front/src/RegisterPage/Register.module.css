@@ -4,11 +4,11 @@
     text-align: center;
 }
 
-.container .infoWrap {
+/* .container .infoWrap {
     display: flex;
     flex-direction: row;
     justify-content: center;
-}
+} */
 
 .container label, .container p span {
     margin-right: 8px;
