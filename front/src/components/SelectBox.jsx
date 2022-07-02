@@ -7,8 +7,6 @@ let index = 0;
 function SelectBox() {
   const [items, setItems] = useState(["홍염", "파보", "코로나", "슬개골",]);
   const [name, setName] = useState('');
-  const [selectedItems, setSelectedItems] = useState([]);
-  const filteredOptions = items.filter((o) => !selectedItems.includes(o));
 
   const onNameChange = (event) => {
     setName(event.target.value);
@@ -16,9 +14,14 @@ function SelectBox() {
 
   const addItem = (e) => {
     e.preventDefault();
+    console.log(items);
+    console.log(name);
     setItems([...items, name || `New item ${index++}`]);
     setName('');
   };
+
+  const [selectedItems, setSelectedItems] = useState([]);
+  const filteredOptions = items.filter((o) => !selectedItems.includes(o));
 
   return (
     <Select
@@ -44,7 +47,7 @@ function SelectBox() {
               padding: '0 8px 4px',
             }}
           >
-            <Input placeholder="직접 입력" value={name} onChange={onNameChange} />
+            <Input placeholder="Please enter item" value={name} onChange={onNameChange} />
             <Typography.Link
               onClick={addItem}
               style={{
