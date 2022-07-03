@@ -15,7 +15,7 @@ function Register() {
     const [age, setAge] = useState(0);
     const [gender, setGender] = useState(0);
     const [species, setSpecies] = useState("");
-    const [items, setItems] = useState(["홍염", "파보", "코로나", "슬개골",]);
+    const [items, setItems] = useState(["홍역", "파보", "코로나", "슬개골",]);
     const [diseaseName, setDiseaseName] = useState("");
     const [selectedItems, setSelectedItems] = useState([]);
     const filteredOptions = items.filter((o) => !selectedItems.includes(o));
@@ -90,7 +90,6 @@ function Register() {
         if (res.data) {
             alert('Added Data');
         }
-        alert("정보가 등록되었습니다.");
         // navigate('/listview');
     }
 
