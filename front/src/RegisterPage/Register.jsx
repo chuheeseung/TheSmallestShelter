@@ -19,16 +19,15 @@ function Register() {
     const [diseaseName, setDiseaseName] = useState("");
     const [selectedItems, setSelectedItems] = useState([]);
     const filteredOptions = items.filter((o) => !selectedItems.includes(o));
-    const [health, setHealth] = useState("");
     const [manager, setManager] = useState(1);
-    const [checkValArr, setCheckValArr] = useState([]);
-    const managerArr = [{ name: "임보 단체", value: 1 }, { name: "개인", value: 2 }];
+    const [checkVal, setCheckVal] = useState([]);
     const checkArr = ["사회화", "분리불안", "배변 훈련", "짖음", "입질"];
-    const checkObj = [
+    const checkType = [
         { name: "완벽해요", value: 1 },
         { name: "연습중이에요", value: 2 },
         { name: "아직 부족해요", value: 3 }
     ]
+    const managerArr = [{ name: "임보 단체", value: 1 }, { name: "개인", value: 2 }];
     const [imgList, setImgList] = useState("");
     const [file, setFile] = useState("");
     const [imgUrl, setImgUrl] = useState("");
@@ -50,11 +49,10 @@ function Register() {
 
     const onChangeCheck = (e) => {
         const { id, value } = e.target;
-        const result = { [id]:  parseInt(value) };
-        console.log(result)
-
-        setCheckValArr([...checkValArr, result]);
-        console.log(checkValArr)
+        let tmp = [];
+        tmp = checkVal;
+        tmp[id] = Number(value);
+        setCheckVal(tmp);
     }
 
     const onChangeAge = (e) => {
@@ -65,6 +63,8 @@ function Register() {
         e.preventDefault();
         console.log(imgUrl)
         console.log(typeof imgUrl)
+        console.log(checkVal)
+        console.log(typeof checkVal[0])
         const res = await axios({
             headers: {
                 withCredentials: true,
@@ -77,11 +77,11 @@ function Register() {
                 name: name,
                 age: age,
                 organization: manager,
-                socialization: checkValArr[0][0],
-                anxiety: checkValArr[1][1],
-                train: checkValArr[2][2],
-                bark: checkValArr[3][3],
-                bite: checkValArr[4][4],
+                socialization: checkVal[0],
+                anxiety: checkVal[1],
+                train: checkVal[2],
+                bark: checkVal[3],
+                bite: checkVal[4],
                 illness: selectedItems,
                 mainImg: imgUrl,
                 species: species,
@@ -121,7 +121,7 @@ function Register() {
                 <div className={style.infoWrap}>
                     <div className={style.photo}>
                         {imgUrl &&
-                        <img src={imgUrl} style={{marginBottom: "8px", width: "200px"}}/>
+                            <img src={imgUrl} style={{ marginBottom: "8px", width: "200px" }} />
                         }
                         <p>
                             <label htmlFor="urlImg">이미지</label>
@@ -255,19 +255,18 @@ function Register() {
                                 <p className={style.checkList}>
                                     <span>{item}</span>
                                     {
-                                        checkObj.map((check) => (
+                                        checkType.map((check) => (
                                             <label>
                                                 <input
                                                     id={idx}
                                                     type='radio'
-                                                    name={idx}
+                                                    name={item}
                                                     value={check.value}
                                                     onChange={onChangeCheck}
                                                 />{check.name} </label>
                                         ))
                                     }
                                 </p>
-
                             ))
                         }
 
