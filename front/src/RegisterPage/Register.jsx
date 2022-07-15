@@ -86,7 +86,6 @@ function Register() {
         if (res.data) {
             alert('Added Data');
         }
-        alert("정보가 등록되었습니다.");
         // navigate('/listview');
     }
 
