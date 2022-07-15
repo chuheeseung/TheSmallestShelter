@@ -1,73 +1,46 @@
-import { PlusOutlined, LoadingOutlined } from '@ant-design/icons';
-import { message, Upload, Progress } from 'antd';
-import axios from 'axios';
-import { useState } from 'react';
+// firebase 사용한 image upload component
+import React, { useRef, useState } from 'react';
 
-function UploadImg({ ImgUploadFunc }) {
-    const [defaultFileList, setDefaultFileList] = useState([]);
-    const [progress, setProgress] = useState(0);
-    const [loading, setLoading] = useState(false);
-    const [imageUrl, setImageUrl] = useState();
+function UploadImg({ uploadImage }) {
+  const [preview, setPreivew] = useState(""); // 미리보기 url
+  const fileInput = useRef();
 
-    const uploadImage = async options => {
-        const { onSuccess, onError, file, onProgress } = options;
-    
-        const fmData = new FormData();
-        const config = {
-          headers: { "content-type": "multipart/form-data" },
-          onUploadProgress: event => {
-            const percent = Math.floor((event.loaded / event.total) * 100);
-            setProgress(percent);
-            if (percent === 100) {
-              setTimeout(() => setProgress(0), 1000);
-            }
-            onProgress({ percent: (event.loaded / event.total) * 100 });
-          }
-        };
-        fmData.append("image", file);
-     };
-    
-      const handleOnChange = ({ file, fileList, event }) => {
-        setDefaultFileList(fileList);
-        ImgUploadFunc(fileList)
+  const onFileChange = (e) => {
+    const theFile = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = (finishedEvent) => {
+      const {
+        currentTarget: { result }
+      } = finishedEvent;
+      setPreivew(result);
+      uploadImage(result.toString()); // 엄청 긴 이미지 url 넘겨줌
+    }
+    reader.readAsDataURL(theFile);
+  }
 
-      };
+  const onFileDelete = () => {
+    setPreivew("");
+    fileInput.current.value = "";
+  }
 
-    const uploadButton = (
-        <div>
-            {loading ? <LoadingOutlined /> : <PlusOutlined />}
-            <div
-                style={{
-                    marginTop: 8,
-                }}
-            >
-                Upload
-            </div>
-        </div>
-    );
-
-    return (
-        <Upload
+  return (
+    <div>
+      <input
+        type="file"
         accept="image/*"
-        customRequest={uploadImage}
-        onChange={handleOnChange}
-        listType="picture-card"
-        defaultFileList={defaultFileList}
-        className="image-upload-grid"
-        >
-            {imageUrl ? (
-                <img
-                    src={imageUrl}
-                    alt="avatar"
-                    style={{
-                        width: '100%',
-                    }}
-                />
-            ) : (
-                uploadButton
-            )}
-        </Upload>
-    );
-};
+        onChange={onFileChange}
+        ref={fileInput}
+      />
+      {preview && (
+        <>
+          <div>
+            <img src={preview} width="300px" />
+          </div>
+          <button onClick={onFileDelete}>Clear</button>
+        </>
+      )}
+    </div>
+  );
+}
 
 export default UploadImg;
