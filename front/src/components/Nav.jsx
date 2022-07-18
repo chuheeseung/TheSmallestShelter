@@ -1,23 +1,25 @@
 import React from 'react';
 import style from "./Nav.module.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { ReactComponent as LogoIcon } from '../assets/Group 8700.svg';
+
 function Nav() {
+  const navigate = useNavigate();
   return (
-    <nav className={style.navigation}>
-      <div className={style.navLeft}>
-      <Link to="/listview" style={{ textDecoration: "none", color: "inherit" }}>
-        <h1 className={style.logo}>세작소</h1></Link>
-        <Link to="/register" style={{ textDecoration: "none", color: "inherit" }}>
-          <span className={style.register}>등록하기</span></Link>
+    <div className={style.headerWrap}>
+      <div className={style.headerLogo}>
+        <LogoIcon style={{ width: "32px", margin: "0 8px 0 24px" }} onClick={() => navigate('/listview')}/>
+        <h1 style={{ fontSize: "20px", marginRight: "24px", fontWeight: "normal" }} onClick={() => navigate('/listview')}>세작소</h1>
+
+        <Link to='/register' style={{ textDecoration: "none", color: "inherit" }}><p style={{ fontSize: "14px" }}>등록하기</p></Link>
       </div>
-      <div className={style.navRight}>
-        <ul>
-          <li>로그인</li>
-          <li>회원가입</li>
-          <li>마이페이지</li>
-        </ul>
+
+      <div className={style.headerRight}>
+        <p>로그인</p>
+        <p style={{ margin: "0 24px" }}>|</p>
+        <p>회원가입</p>
       </div>
-    </nav>
+    </div>
   );
 }
 

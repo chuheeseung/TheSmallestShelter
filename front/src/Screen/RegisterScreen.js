@@ -6,7 +6,6 @@ import "antd/dist/antd.min.css";
 function RegisterScreen() {
     return (
         <div>
-            <Nav/>
             <Register/>
         </div>
     );
