@@ -1,3 +1,39 @@
+import React, { useState } from 'react';
+import Filtering from '../ListViewPage/components/Filtering';
+import DataItem from '../ListViewPage/components/DataItem';
+import Banner from '../ListViewPage/components/Banner';
+import { dummy } from '../ListViewPage/dataDummy';
+import style from './ListviewScreen.module.css';
+
+export default function ListviewScreen() {
+    return (
+    <>
+        <Banner />
+        <Filtering />
+            <div className={style.dataContainer}>
+                {
+                    dummy.results.map((item) => {
+                        return (
+                            <DataItem
+                                key = {item.id}
+                                id = {item.id}
+                                photoUrl = {item.photo}
+                                name = {item.name}
+                                age = {item.age}
+                                species = {item.species}
+                                isAdopted = {item.isAdopted}
+                                gender = {item.gender}
+                            />
+                        )
+                    })
+                }
+            </div>
+        </>
+    )
+}
+
+
+/*
 import '../App.css';
 import "antd/dist/antd.min.css";
 import { Layout } from 'antd';
@@ -48,3 +84,4 @@ function ListviewScreen() {
 }
 
 export default ListviewScreen;
+*/

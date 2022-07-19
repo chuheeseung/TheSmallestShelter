@@ -1,0 +1,33 @@
+.dataContainer {
+  width: 250px;
+  height: 350px;
+  overflow: hidden;
+  margin: 16px;
+  margin-bottom: 3rem;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.dataPhoto {
+  max-width: 100%;
+  width: auto !important;
+  height: auto !important;
+  display: block;
+}
+
+.dataInfo {
+  padding-left: 4px;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.dataInfo h4 {
+  margin: 6px 0 0 0;
+  font-size: 20px;
+}
+
+.dataInfo p {
+  margin: 4px 0 0 0;
+  color: #969696;
+}
