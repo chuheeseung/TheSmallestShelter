@@ -11,14 +11,16 @@
   flex-direction: row;
   align-items: center;
   margin-left: 30px;
+  vertical-align: middle;
 }
 
 .headerRight {
   display: flex;
   flex-direction: row;
   margin-right: 54px;
+  align-items: center;
 }
 
-.headerRight p {
+.headerRight span {
   font-size: 14px;
 }
