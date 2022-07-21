@@ -1,18 +1,50 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Filtering from '../ListviewPage/components/Filtering';
 import DataItem from '../ListviewPage/components/DataItem';
 import Banner from '../ListviewPage/components/Banner';
 import { dummy } from '../ListviewPage/dataDummy';
 import style from './ListviewScreen.module.css';
+import { Pagination } from 'antd';
+
+const PAGE_SIZE = 10;
 
 export default function ListviewScreen() {
+    const [cardList,setCardList] = useState([]); // 데이터 받아오는 배열
+
+    const [minValue, setMinValue] = useState(0);
+    const [maxValue, setMaxValue] = useState(PAGE_SIZE);
+
+    /*
+    useEffect(()=> {axios({
+            method: "GET",
+            url: "http://hana-umc.shop:8080/list",
+            headers: {
+                withCredentials: true,
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                'Accept': 'application/json',
+            }
+        })
+        .then((response) => setData(response.data))
+    }, []);
+    */
+
+    useEffect(() => { // 처음 로딩 때 dummy를 가져와서 배열에 넣어줌
+        setCardList(dummy.results);
+    }, []);
+
+    const handleChange = (value) => {
+        setMinValue((value - 1) * PAGE_SIZE);
+        setMaxValue(value * PAGE_SIZE);
+    };
+
     return (
-    <>
-        <Banner />
-        <Filtering />
+        <>
+            <Banner />
+            <Filtering />
             <div className={style.dataContainer}>
                 {
-                    dummy.results.map((item) => {
+                    cardList.slice(minValue, maxValue)
+                        .map((item) => {
                         return (
                             <DataItem
                                 key = {item.id}
@@ -27,61 +59,15 @@ export default function ListviewScreen() {
                         )
                     })
                 }
+                
             </div>
+            <Pagination
+                style={{display: 'block', margin: '8px', textAlign: 'center'}}
+                defaultCurrent={1}
+                defaultPageSize={PAGE_SIZE}
+                onChange={handleChange}
+                total={cardList.length}
+            />
         </>
     )
 }
-
-
-/*
-import '../App.css';
-import "antd/dist/antd.min.css";
-import { Layout } from 'antd';
-import { Content } from 'antd/lib/layout/layout';
-import Photo from '../ListviewPage/photo';
-import axios from "axios";
-import {useEffect,useState} from "react";
-
-function ListviewScreen() {
-    const [data,setData]=useState([]);
-
-    useEffect(()=> {axios({
-            method: "GET",
-            url: "http://hana-umc.shop:8080/list",
-            headers: {
-                withCredentials: true,
-                "Access-Control-Allow-Origin": "http://localhost:3000",
-                'Accept': 'application/json',
-            }
-        })
-        .then((response) => setData(response.data))
-    });
-
-    return (
-        <div className="app">
-            <Layout>
-                <Content className="app-container">
-                    <div className="list-title">🐱 동물들을 소개합니다 🐶</div>
-                    <div className="list-container">
-                        {
-                            data.map((item) => {
-                                return (
-                                    <Photo
-                                        imgUrl = {item.imgUrl}
-                                        name = {item.name}
-                                        gender = {item.gender}
-                                        age = {item.age}
-                                        species = {item.species}
-                                    />
-                                )
-                            })
-                        }
-                    </div>
-                </Content>
-            </Layout>
-        </div>
-    );
-}
-
-export default ListviewScreen;
-*/
