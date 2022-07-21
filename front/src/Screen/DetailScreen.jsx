@@ -1,17 +1,13 @@
 import React, {useEffect, useState} from "react";
 // import logo from './logo.svg';
-import "../DetailPage/Main.css";
+// import "../DetailPage/Main.css";
 import Banner from "../DetailPage/Banner";
 import Posts from "../DetailPage/Posts";
 import Slider from "../DetailPage/Slider";
 import axios from "axios";
+import Nav from "../components/Nav"
 
 function DetailScreen() {
-    const [name, setName] = useState("");
-    const [age, setAge] = useState(0);
-    const [detail, setDetail] = useState("");
-    const [items, setItems] = useState(["홍염", "파보", "코로나", "슬개골",]);
-
 
     // useEffect(()=> {axios({
     //     method: "GET",
@@ -27,12 +23,17 @@ function DetailScreen() {
 
   return (
     <div>
-      <Banner />
-      <br />
-      <hr />
-      <Posts />
-      <hr />
-      <Slider />
+    <Nav/>
+    <div>
+        <Banner />
+        <Posts 
+          imgUrl = "https://web-wit.s3.ap-northeast-2.amazonaws.com/images/boardKnowhow/1680/knowhow_1638185402_3.jpg"
+          name = "우유의 일상1"
+          gender = "어쩌구 저쩌구"
+        />
+      {/* <hr />
+      <Slider />  */}
+    </div>
     </div>
   );
 }

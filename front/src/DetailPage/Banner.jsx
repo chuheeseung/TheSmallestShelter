@@ -1,28 +1,123 @@
 import React, { Component } from 'react'
 import axios from "axios";
+import styled from "styled-components";
+import { AiOutlineStar } from "react-icons/ai";
 
-function Banner() {
-    var data = {
-        animalName: "길동이"
-    }
+
+function Banner({ imgUrl, name, age, gender, species }) {
         return (
-            <section className="container-banner">
-                    <a href="#detail">
-                        <img id="profilepic" src="https://mblogthumb-phinf.pstatic.net/MjAyMTAxMTRfOTgg/MDAxNjEwNjE0MDg3ODcy.28hxXvxgn2WbHgG7ZiL64bxAiizC3JBZwKCRP-8PcQIg.EDx8izDu_pCfgLBg7F15z7yARZfsEpvk15sX3INo8ZEg.JPEG.brteddy/IMG_0343.jpg?type=w800" width="170" height="170"/></a>
-                        <h1> 길동이 </h1>
-                        <p id="paragarph1"> 
-                        구미 개농장에서 구조된 메론이
-
-함께 구조된 구미개농장 친구들 중, 제일 오랫동안 유행사 식구로 지내며 구미 아이들 가족 찾기 대장정의 끝을 장식한 우리 우유
-
-우유아, 이름 처럼 달콤한 견생을 살기 바래, 이모 삼촌들이 많이 사랑해💚 <br/>
-관리 단체 : 개인<br/>
-질병: 홍역, 슬개골<br/>
-나이 : 2살
-</p>
-            </section>
+            <RootBanner>
+                <DetailTitle>동물 상세 정보</DetailTitle>
+                <ContainerBanner>
+                    <Profile>
+                        <ProfileImg src="https://mblogthumb-phinf.pstatic.net/MjAyMTAxMTRfOTgg/MDAxNjEwNjE0MDg3ODcy.28hxXvxgn2WbHgG7ZiL64bxAiizC3JBZwKCRP-8PcQIg.EDx8izDu_pCfgLBg7F15z7yARZfsEpvk15sX3INo8ZEg.JPEG.brteddy/IMG_0343.jpg?type=w800"/>
+                        <PetInfo>
+                            <PetName> 길동이 </PetName>
+                            <PetParagraph>
+                                <InfoParagraph>
+                                    <InfoItem1>
+                                        동물종류
+                                    </InfoItem1>
+                                    <InfoItem1>
+                                        성별
+                                    </InfoItem1>
+                                    <InfoItem1>
+                                        나이
+                                    </InfoItem1>
+                                </InfoParagraph>
+                                <InfoParagraph>
+                                    <InfoItem2>
+                                        고양이
+                                    </InfoItem2>
+                                    <InfoItem2>
+                                        여
+                                    </InfoItem2>
+                                    <InfoItem2>
+                                        2살
+                                    </InfoItem2>
+                                </InfoParagraph>
+                            </PetParagraph>
+                        </PetInfo>
+                    </Profile>
+                    <IconSet><AiOutlineStar/></IconSet>      
+                </ContainerBanner>
+            </RootBanner>
         )
 }
+
+const RootBanner=styled.section`
+    width: 100%;
+    height: 460px;
+    margin-top:65px;
+    background: #FBC22E;
+    font-family: 'Spoqa Han Sans Neo';
+    padding: 5px 0px;
+
+`;
+
+const ContainerBanner=styled.div`
+    display:flex;
+    justify-content:space-between;
+    align-content:center;
+    width: 100%;
+    height: 366px;
+    background-color:#ffffff;
+    padding: 45px 100px;
+`
+
+const Profile= styled.div`
+    display:flex;  
+
+`;
+
+const DetailTitle=styled.h3`
+    font-weight: 700;
+    margin :25px 100px;
+    color: white;
+    
+`;
+
+const ProfileImg= styled.img `
+    border-radius: 10px;
+    padding-top: 7px;
+    width:275px; 
+    height:275px;
+`;
+
+const PetInfo=styled.div`
+    margin-left: 50px;
+`;
+
+const PetName=styled.h1`
+    font-weight: 700;
+`;
+
+const PetParagraph=styled.div`
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+`
+
+const InfoParagraph=styled.p`
+`;
+
+const InfoItem1=styled.h5`
+
+    margin-top:20px;
+`
+
+const InfoItem2=styled.h5`
+    margin-top:20px;
+    margin-left:60px;
+    font-weight: 700;
+    font-size:12px;
+`
+
+
+const IconSet=styled.div`
+
+`;
 
 export default Banner
 

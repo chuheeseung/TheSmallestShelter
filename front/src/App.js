@@ -7,7 +7,6 @@ import Nav from "./components/Nav";
 const App = () => {
     return (
         <BrowserRouter>
-            <Nav/>
             <Routes>
                 <Route path="/detail" element={<DetailScreen />} />
                 <Route path="/listview" element={<ListviewScreen />} />
