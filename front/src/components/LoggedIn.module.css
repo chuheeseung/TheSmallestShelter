@@ -1,9 +1,14 @@
-.popupWrap {
+.message {
+  transform: 0;
+}
+
+.dropdownWrap {
   width: 260px;
   height: 320px;
   border-radius: 10px;
   border: 1px solid lightgray;
   box-shadow: 0px -4px 30px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
 .userInfoWrap {
@@ -20,6 +25,14 @@
   width: 48px;
 }
 
-.userInfo span {
-  display: block;
+.userInfo p {
+  margin: 0;
+}
+
+.tabWrap {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  padding-left: 48px;
+  padding-top: 32px;
 }

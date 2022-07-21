@@ -101,6 +101,7 @@ function Register() {
 
     return (
         <div className={style.container}>
+            <div className={style.registerTop}><span>등록하기</span></div>
             <form onSubmit={onSubmit}>
                 <div className={style.infoWrap}>
                     <div className={style.photo}>
@@ -108,43 +109,43 @@ function Register() {
                     </div>
                     <div className={style.info}>
                         <p>
-                            <label htmlFor="name">이름</label>
+                            <label htmlFor="name" style={{ marginRight: "64px" }}>이름</label>
                             <input
                                 type="text"
                                 id="name"
-                                placeholder="이름을 입력하세요"
+                                placeholder="이름을(를) 입력하세요"
                                 value={name}
-                                onChange={(e) => setName(e.target.value)} />
+                                onChange={(e) => setName(e.target.value)}
+                                className={style.nameInput} />
+                        </p>
+                        <p className={style.genderInput}>
+                            <span style={{ marginRight: "64px" }}>성별</span>
+                            <input type='radio' name="gender" id="암컷" value="1" onChange={(e) => setGender(Number(e.target.value))} />
+                            <label htmlFor='암컷'>암컷</label>
+                            <input type='radio' name="gender" id="수컷" value="2" onChange={(e) => setGender(Number(e.target.value))} />
+                            <label htmlFor='수컷'>수컷</label>
+                            <input type='radio' name="gender" id="중성" value="3" onChange={(e) => setGender(Number(e.target.value))} />
+                            <label htmlFor='중성'>중성</label>
                         </p>
                         <p>
-                            <label htmlFor='age'>나이</label>
+                            <label htmlFor='age' style={{ marginRight: "64px" }}>나이</label>
                             <input
                                 id="age"
                                 type='number'
-                                placeholder='나이'
                                 value={age}
                                 onChange={(e) => setAge(e.target.value)}
+                                className={style.ageInpu}
                             />
                         </p>
-                        <p>
-                            <label htmlFor='gender'>성별</label>
-                            <select id="gender" onChange={(e) => setGender(Number(e.target.value))}>
-                                <option value="0">성별</option>
-                                <option value="1">암컷</option>
-                                <option value="2">수컷</option>
-                                <option value="3">중성</option>
-                            </select>
+                        <p className={style.speciesInput}>
+                            <span style={{ marginRight: "35px" }}>동물 종류</span>
+                            <input type='radio' id="강아지" name="species" value="강아지" onChange={(e) => setSpecies(e.target.value)} />
+                            <label htmlFor='강아지'>강아지</label>
+                            <input type='radio' id="고양이" name="species" value="고양이" onChange={(e) => setSpecies(e.target.value)} />
+                            <label htmlFor='고양이'>고양이</label>
                         </p>
                         <p>
-                            <label htmlFor='species'>종</label>
-                            <select id="species" onChange={(e) => setSpecies(e.target.value)}>
-                                <option value="default">종</option>
-                                <option value="강아지">강아지</option>
-                                <option value="고양이">고양이</option>
-                            </select>
-                        </p>
-                        <p>
-                            <span>질병</span>
+                            <span style={{ marginRight: "64px" }}>질병</span>
                             <Select
                                 mode="multiple"
                                 value={selectedItems}
@@ -188,29 +189,33 @@ function Register() {
                                 ))}
                             </Select>
                         </p>
-                        {
-                            checkArr.map((item, idx) => (
-                                <p className={style.checkList}>
-                                    <span>{item}</span>
-                                    {
-                                        checkType.map((check) => (
-                                            <label>
-                                                <input
-                                                    id={idx}
-                                                    type='radio'
-                                                    name={item}
-                                                    value={check.value}
-                                                    onChange={onChangeCheck}
-                                                />{check.name} </label>
-                                        ))
-                                    }
-                                </p>
-                            ))
-                        }
-
+                        <div style={{display: "flex"}}>
+                            <span style={{ marginRight: "35px" }}>행동 문제</span>
+                            <div className={style.checkWrap}>
+                                {
+                                    checkArr.map((item, idx) => (
+                                        <p className={style.checkList}>
+                                            <span>{item}</span>
+                                            {
+                                                checkType.map((check) => (
+                                                    <label>
+                                                        <input
+                                                            id={idx}
+                                                            type='radio'
+                                                            name={item}
+                                                            value={check.value}
+                                                            onChange={onChangeCheck}
+                                                        />{check.name} </label>
+                                                ))
+                                            }
+                                        </p>
+                                    ))
+                                }
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <input type="submit" />
+                <input className={style.submitBtn} type="submit" value="완료" />
             </form>
         </div>
     );

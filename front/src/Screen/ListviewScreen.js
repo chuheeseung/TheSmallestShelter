@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Filtering from '../ListViewPage/components/Filtering';
-import DataItem from '../ListViewPage/components/DataItem';
-import Banner from '../ListViewPage/components/Banner';
-import { dummy } from '../ListViewPage/dataDummy';
+import Filtering from '../ListviewPage/components/Filtering';
+import DataItem from '../ListviewPage/components/DataItem';
+import Banner from '../ListviewPage/components/Banner';
+import { dummy } from '../ListviewPage/dataDummy';
 import style from './ListviewScreen.module.css';
 
 export default function ListviewScreen() {
