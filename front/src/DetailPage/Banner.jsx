@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from "axios";
 import styled from "styled-components";
 import { AiOutlineStar } from "react-icons/ai";
+import { SiTinyletter } from "react-icons/si"
 
 
 function Banner({ imgUrl, name, age, gender, species }) {
@@ -39,7 +40,7 @@ function Banner({ imgUrl, name, age, gender, species }) {
                             </PetParagraph>
                         </PetInfo>
                     </Profile>
-                    <IconSet><AiOutlineStar/></IconSet>      
+                    <IconSet><AiOutlineStar size="24"/><SiTinyletter size="24"/></IconSet>      
                 </ContainerBanner>
             </RootBanner>
         )
@@ -78,6 +79,7 @@ const DetailTitle=styled.h3`
 `;
 
 const ProfileImg= styled.img `
+    object-fit: cover;
     border-radius: 10px;
     padding-top: 7px;
     width:275px; 
@@ -116,7 +118,7 @@ const InfoItem2=styled.h5`
 
 
 const IconSet=styled.div`
-
+    
 `;
 
 export default Banner
