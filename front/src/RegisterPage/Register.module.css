@@ -29,22 +29,23 @@
     font-weight: 500;
 }
 
-.info .nameInput {
+.info .nameInput,
+.info .ageInput {
     border: 1.5px solid #d2d2d2;
     border-radius: 10px;
     text-align: center;
+    outline: none;
 }
+
 .info .genderInput label,
 .info .speciesInput label,
 .checkList span {
     color: #000;
-}
-
-.info input[type="number"] {
-    background-color: #d9d9d9;
-    outline: none;
-    border: 1.5px solid #d2d2d2;
-    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    display: inline-block;
+    /* position: relative;
+    top: -1.5px; */
 }
 
 .info input[type="number"]::-webkit-outer-spin-button,
@@ -58,10 +59,6 @@
     margin-right: 8px;
 }
 
-.container input[type="text"] {
-    outline: none;
-    border: 1px solid gray;
-}
 
 input[type="radio"] {
     margin: 0 4px;
@@ -116,4 +113,20 @@ input[type="radio"] {
     border: none;
     margin-top: 16px;
     font-weight: 500;
+}
+
+.editBtn {
+    border-radius: 10px;
+    background-color: #fff;
+    color: #969696;
+    padding: 4px 8px;
+    border: 1.5px solid #d2d2d2;
+    float: right;
+    margin-top: 4px;
+}
+
+.imgContainer::after{
+    display: block;
+    clear: both;
+    content: '';
 }
