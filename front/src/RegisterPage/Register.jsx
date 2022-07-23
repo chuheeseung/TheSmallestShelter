@@ -107,7 +107,7 @@ function Register() {
         if (res.data) {
             alert('Added Data');
         }
-        // navigate('/listview');
+        navigate('/');
     }
 
     const onNameChange = (event) => {

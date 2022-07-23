@@ -9,8 +9,8 @@ function Nav() {
   return (
     <div className={style.headerWrap}>
       <div className={style.headerLogo}>
-        <Link to='/listview'><img src={logo} style={{ width: "32px", margin: "0 8px 0 24px"}}/></Link>
-        <Link to="/listview" style={{color: "black", textDecoration: "none",fontSize: "20px", fontWeight: "normal"}}>
+        <Link to='/'><img src={logo} style={{ width: "32px", margin: "0 8px 0 24px"}}/></Link>
+        <Link to="/" style={{color: "black", textDecoration: "none",fontSize: "20px", fontWeight: "normal"}}>
           <span style={{marginRight: "24px"}}>세작소</span>
         </Link>
         
