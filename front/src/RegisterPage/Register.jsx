@@ -2,11 +2,20 @@ import React, { useState } from 'react';
 import style from './Register.module.css';
 import UploadImg from './UploadImg';
 import { PlusOutlined } from '@ant-design/icons';
+import { GrCheckbox, GrCheckboxSelected } from 'react-icons/gr';
 import { Divider, Input, Select, Space, Typography } from 'antd';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { storageService } from './fbase';
 import { getDownloadURL, ref, uploadString } from 'firebase/storage';
+
+import perfect_on from '../assets/perfect_on.png';
+import perfect_off from '../assets/perfect_off.png';
+import practice_on from '../assets/practice_on.png';
+import practice_off from '../assets/practice_off.png';
+import lack_on from '../assets/lack_on.png';
+import lack_off from '../assets/lack_off.png';
+import RadioGroup from './RadioGroup';
 const { Option } = Select;
 let index = 0;
 
@@ -18,27 +27,39 @@ function Register() {
     const [name, setName] = useState("");
     const [age, setAge] = useState("");
     const [gender, setGender] = useState(0);
+    const genderList = ['암컷(중성화 X)', '수컷(중성화 X)', '암컷(중성화 O)', '수컷(중성화 O)'];
     const [species, setSpecies] = useState("");
+    const speciesArr = ['강아지', '고양이'];
     const [items, setItems] = useState(["홍역", "파보", "코로나", "슬개골",]);
     const [diseaseName, setDiseaseName] = useState("");
     const [selectedItems, setSelectedItems] = useState([]);
     const filteredOptions = items.filter((o) => !selectedItems.includes(o));
     const [checkVal, setCheckVal] = useState([]);
+    const [checkFlag, setCheckFlag] = useState({});
     const checkArr = ["사회화", "분리불안", "배변 훈련", "짖음", "입질"];
     const checkType = [
-        { name: "완벽해요", value: 1 },
-        { name: "연습중이에요", value: 2 },
-        { name: "아직 부족해요", value: 3 }
+        { name: "완벽해요", value: 1, img_on: perfect_on, img_off: perfect_off },
+        { name: "연습중이에요", value: 2, img_on: practice_on, img_off: practice_off },
+        { name: "아직 부족해요", value: 3, img_on: lack_on, img_off: lack_off }
     ]
     const [image, setImage] = useState("");
 
-    const onChangeCheck = (e) => {
-        const { id, value } = e.target;
-        let tmp = [];
-        tmp = checkVal;
-        tmp[id] = Number(value);
-        setCheckVal(tmp);
-    }
+    // const onChangeCheck = (e) => {
+    //     const { id, value } = e.target;
+    //     setClick(Number(value));
+    //     // setClickId(Number(id));
+    //     let tmp = [];
+    //     tmp = checkVal;
+    //     tmp[id] = Number(value);
+
+    //     let flagObj = {};
+    //     flagObj= checkFlag;
+    //     flagObj[id] = new Array(3).fill(false).fill(true, value-1, value);
+
+    //     setCheckVal(tmp);
+    //     setCheckFlag(flagObj)
+    //     console.log(checkFlag[id])
+    // }
 
     const uploadImage = (img) => {
         setImage(img);
@@ -86,7 +107,7 @@ function Register() {
         if (res.data) {
             alert('Added Data');
         }
-        // navigate('/listview');
+        navigate('/');
     }
 
     const onNameChange = (event) => {
@@ -120,31 +141,52 @@ function Register() {
                         </p>
                         <p className={style.genderInput}>
                             <span style={{ marginRight: "64px" }}>성별</span>
-                            <input type='radio' name="gender" id="암컷" value="1" onChange={(e) => setGender(Number(e.target.value))} />
-                            <label htmlFor='암컷'>암컷</label>
-                            <input type='radio' name="gender" id="수컷" value="2" onChange={(e) => setGender(Number(e.target.value))} />
-                            <label htmlFor='수컷'>수컷</label>
-                            <input type='radio' name="gender" id="중성" value="3" onChange={(e) => setGender(Number(e.target.value))} />
-                            <label htmlFor='중성'>중성</label>
+                            {genderList.map((data, idx) => (
+                                <label htmlFor={data}>
+                                    <input
+                                        type="radio"
+                                        id={data}
+                                        name="gender"
+                                        value={idx + 1}
+                                        onChange={(e) => setGender(Number(e.target.value))}
+                                        checked={gender == idx + 1}
+                                        style={{ display: "none" }}
+                                    />
+                                    {gender == idx + 1 ? <GrCheckboxSelected /> : <GrCheckbox />}
+                                    <span style={{ marginLeft: "8px", color: "black", position: "relative", top: "-1.5px" }}>{data}</span>
+                                </label>
+                            ))}
                         </p>
                         <p>
                             <label htmlFor='age' style={{ marginRight: "64px" }}>나이</label>
                             <input
                                 id="age"
+                                placeholder="나이를 입력하세요"
                                 type='number'
                                 value={age}
                                 onChange={(e) => setAge(e.target.value)}
-                                className={style.ageInpu}
+                                className={style.ageInput}
                             />
                         </p>
                         <p className={style.speciesInput}>
                             <span style={{ marginRight: "35px" }}>동물 종류</span>
-                            <input type='radio' id="강아지" name="species" value="강아지" onChange={(e) => setSpecies(e.target.value)} />
-                            <label htmlFor='강아지'>강아지</label>
-                            <input type='radio' id="고양이" name="species" value="고양이" onChange={(e) => setSpecies(e.target.value)} />
-                            <label htmlFor='고양이'>고양이</label>
+                            {speciesArr.map((data) => (
+                                <label htmlFor={data}>
+                                    <input
+                                        type="radio"
+                                        id={data}
+                                        name="species"
+                                        value={data}
+                                        onChange={(e) => setSpecies(e.target.value)}
+                                        checked={species === data}
+                                        style={{ display: "none" }}
+                                    />
+                                    {species === data ? <GrCheckboxSelected /> : <GrCheckbox />}
+                                    <span style={{ marginLeft: "8px", color: "black", position: "relative", top: "-1.5px" }}>{data}</span>
+                                </label>
+                            ))}
                         </p>
-                        <p>
+                        <p className={style.diseaseInput}>
                             <span style={{ marginRight: "64px" }}>질병</span>
                             <Select
                                 mode="multiple"
@@ -189,25 +231,36 @@ function Register() {
                                 ))}
                             </Select>
                         </p>
-                        <div style={{display: "flex"}}>
+                        <div style={{ display: "flex" }}>
                             <span style={{ marginRight: "35px" }}>행동 문제</span>
                             <div className={style.checkWrap}>
                                 {
                                     checkArr.map((item, idx) => (
                                         <p className={style.checkList}>
                                             <span>{item}</span>
-                                            {
-                                                checkType.map((check) => (
-                                                    <label>
-                                                        <input
-                                                            id={idx}
-                                                            type='radio'
-                                                            name={item}
-                                                            value={check.value}
-                                                            onChange={onChangeCheck}
-                                                        />{check.name} </label>
+                                            <RadioGroup item={item} idx={idx} checkType={checkType} setCheckVal={setCheckVal} checkVal={checkVal}/>
+                                            {/* {
+                                                checkType.map((check, index) => (
+                                                    <>
+                                                        <label>
+                                                            <input
+                                                                id={idx}
+                                                                type='radio'
+                                                                name={item}
+                                                                value={check.value}
+                                                                onChange={onChangeCheck}
+                                                                checked={click === index+1}
+                                                                style={{ display: "none" }}
+                                                            />
+ 
+                                                        {checkFlag[idx][index]
+                                                            ? (<img src={check.img_on} style={{ height: '24px' }} />)
+                                                            : (<img src={check.img_off} style={{ height: '24px' }} />)
+                                                        }
+                                                        </label>
+                                                    </>
                                                 ))
-                                            }
+                                            } */}
                                         </p>
                                     ))
                                 }

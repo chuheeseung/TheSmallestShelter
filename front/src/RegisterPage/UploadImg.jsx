@@ -1,28 +1,11 @@
 // firebase 사용한 image upload component
 import React, { useRef, useState } from 'react';
 import style from './Register.module.css';
-import { Upload } from 'antd';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { BsImage } from 'react-icons/bs';
 
 function UploadImg({ uploadImage }) {
   const [preview, setPreivew] = useState(""); // 미리보기 url
-  const [loading, setLoading] = useState(false);
-
   const fileInput = useRef();
-
-  const uploadButton = () => {
-    <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div
-        style={{
-          marginTop: 8,
-        }}
-      >
-        Upload
-      </div>
-    </div>
-  }
 
   const onFileChange = (e) => {
     const theFile = e.target.files[0];
@@ -39,7 +22,6 @@ function UploadImg({ uploadImage }) {
 
   const onFileDelete = () => {
     setPreivew("");
-    fileInput.current.value = "";
   }
 
   return (
@@ -54,7 +36,7 @@ function UploadImg({ uploadImage }) {
         ) : (
           <>
             <BsImage size={64} color="#969696" />
-            <span style={{color: "#969696", fontWeight: "bold"}}>사진 선택하기</span>
+            <span style={{color: "#969696", fontWeight: "bold"}} >사진 선택하기</span>
             <input
               type="file"
               accept="image/*"
@@ -64,8 +46,7 @@ function UploadImg({ uploadImage }) {
           </>
         )}
       </div>
-      {preview && <button onClick={onFileDelete}>Clear</button>}
-      
+      {preview && <button className={style.editBtn} onClick={onFileDelete}>사진 변경</button>}
     </div>
   );
 }

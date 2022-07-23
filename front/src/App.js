@@ -9,8 +9,8 @@ const App = () => {
         <BrowserRouter>
             <Nav/>
             <Routes>
+                <Route path="/" element={<ListviewScreen />} />
                 <Route path="/detail" element={<DetailScreen />} />
-                <Route path="/listview" element={<ListviewScreen />} />
                 <Route path="/register" element={<RegisterScreen />} />
             </Routes>
         </BrowserRouter>
