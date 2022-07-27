@@ -3,6 +3,8 @@ import DetailScreen from './Screen/DetailScreen';
 import ListviewScreen from './Screen/ListviewScreen';
 import RegisterScreen from "./Screen/RegisterScreen";
 import Nav from "./components/Nav";
+import Footer from "./components/Footer";
+import SignInScreen from './Screen/SignInScreen';
 
 const App = () => {
     return (
@@ -12,6 +14,7 @@ const App = () => {
                 <Route path="/" element={<ListviewScreen />} />
                 <Route path="/detail" element={<DetailScreen />} />
                 <Route path="/register" element={<RegisterScreen />} />
+                <Route path="/signIn" element={<SignInScreen />} />
             </Routes>
         </BrowserRouter>
     );
