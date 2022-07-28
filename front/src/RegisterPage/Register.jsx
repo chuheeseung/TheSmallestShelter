@@ -167,6 +167,7 @@ function Register() {
                                 onChange={(e) => setAge(e.target.value)}
                                 className={style.ageInput}
                             />
+                            <span style={{fontSize: '12px', color: '#969696', verticalAlign: 'bottom', marginLeft: '16px'}}>※ 1살 미만일 경우 0살로 기입하세요.</span>
                         </p>
                         <p className={style.speciesInput}>
                             <span className={style.title}>동물 종류</span>
