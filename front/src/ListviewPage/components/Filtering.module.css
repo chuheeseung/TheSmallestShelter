@@ -1,13 +1,29 @@
-.filterWrap {
+.filterContent {
   width: 100%;
-  margin: auto;
   background-color: #f8f9fa;
   text-align: center;
+  margin: auto;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.filterWrap {
+  text-align: center;
+  margin: 0 10px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.filterTitle {
+  font-weight: 700;
+  font-size: 16px;
 }
 
 .filterSection {
+  width: 150px;
 }
 
 .filterItem {
-
+  text-align: center;
 }
