@@ -1,7 +1,7 @@
 import React from 'react';
 import style from "./Nav.module.css";
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../assets/Group 8700.png';
+import logo from '../assets/Group8700.png';
 import LoggedIn from './LoggedIn';
 
 function Nav() {
