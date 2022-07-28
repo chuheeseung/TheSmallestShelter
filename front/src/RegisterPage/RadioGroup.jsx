@@ -24,7 +24,7 @@ function RadioGroup({ item, idx, checkType, setCheckVal, checkVal }) {
 }
 
   return (
-    <div>
+    <div style={{display: "inline-block", marginLeft: '16px'}}>
       {
         checkType.map((check, index) => (
           <>

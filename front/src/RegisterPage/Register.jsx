@@ -130,7 +130,7 @@ function Register() {
                     </div>
                     <div className={style.info}>
                         <p>
-                            <label htmlFor="name" style={{ marginRight: "64px" }}>이름</label>
+                            <label htmlFor="name" className={style.title}>이름</label>
                             <input
                                 type="text"
                                 id="name"
@@ -140,7 +140,7 @@ function Register() {
                                 className={style.nameInput} />
                         </p>
                         <p className={style.genderInput}>
-                            <span style={{ marginRight: "64px" }}>성별</span>
+                            <span className={style.title}>성별</span>
                             {genderList.map((data, idx) => (
                                 <label htmlFor={data}>
                                     <input
@@ -158,7 +158,7 @@ function Register() {
                             ))}
                         </p>
                         <p>
-                            <label htmlFor='age' style={{ marginRight: "64px" }}>나이</label>
+                            <label htmlFor='age' className={style.title}>나이</label>
                             <input
                                 id="age"
                                 placeholder="나이를 입력하세요"
@@ -167,9 +167,10 @@ function Register() {
                                 onChange={(e) => setAge(e.target.value)}
                                 className={style.ageInput}
                             />
+                            <span style={{fontSize: '12px', color: '#969696', verticalAlign: 'bottom', marginLeft: '16px'}}>※ 1살 미만일 경우 0살로 기입하세요.</span>
                         </p>
                         <p className={style.speciesInput}>
-                            <span style={{ marginRight: "35px" }}>동물 종류</span>
+                            <span className={style.title}>동물 종류</span>
                             {speciesArr.map((data) => (
                                 <label htmlFor={data}>
                                     <input
@@ -187,7 +188,7 @@ function Register() {
                             ))}
                         </p>
                         <p className={style.diseaseInput}>
-                            <span style={{ marginRight: "64px" }}>질병</span>
+                            <span className={style.title}>질병</span>
                             <Select
                                 mode="multiple"
                                 value={selectedItems}
@@ -232,7 +233,7 @@ function Register() {
                             </Select>
                         </p>
                         <div style={{ display: "flex" }}>
-                            <span style={{ marginRight: "35px" }}>행동 문제</span>
+                            <span className={style.title} style={{marginRight:"6px"}}>행동 문제</span>
                             <div className={style.checkWrap}>
                                 {
                                     checkArr.map((item, idx) => (
