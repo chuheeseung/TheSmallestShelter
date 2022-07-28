@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import logoImage from '../assets/Group8700.png';
 import style from './Login.module.css';
+import userDummy from './userDummy';
 
 const User = {
     email: 'test@gmail.com',
@@ -72,7 +74,7 @@ function Login() {
                     <input 
                         type='text'
                         className={style.input}
-                        palceholder='test@gmail.com'
+                        placeholder='example@gmail.com'
                         value={email}
                         onChange={handleEmail}
                     />
@@ -102,6 +104,9 @@ function Login() {
                     }
                 </div>
             </div>
+            <Link to="/signUp" className={style.signUpLink}>
+                회원가입
+            </Link>
             <div>
                 <button 
                     disabled={notAllow} 
