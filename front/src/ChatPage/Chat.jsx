@@ -7,6 +7,7 @@ import style from './ChatPage.module.css'
 import Message from './Message';
 import MessageList from './MessageList';
 import { chatdata } from './ChatData';
+import { GrCheckbox, GrCheckboxSelected } from 'react-icons/gr';
 
 function Chat() {
   const [messages, setMessages] = useState([]); // 모든 쪽지 내역
@@ -84,8 +85,16 @@ function Chat() {
           </div>
         </div>
         <div className={style.listInfo}>
-          <input style={{marginRight: '70px'}} type="checkbox" onChange={(e) => onCheckAll(e.target.checked)} checked={checkedItems.length == message.length ? true : false}/>
-          <span style={{fontWeight: 'bold', marginRight: '250px'}}>
+          <label>
+            <input 
+              style={{display:'none'}} 
+              type="checkbox" 
+              onChange={(e) => onCheckAll(e.target.checked)} 
+              checked={checkedItems.length == message.length ? true : false}
+            />
+            {checkedItems.length == message.length ? <GrCheckboxSelected/> : <GrCheckbox/>}
+          </label>
+          <span style={{fontWeight: 'bold', marginRight: '250px', marginLeft:'70px'}}>
           {clicked === 'sent'
           ? '받는 사람'
           : '보낸 사람'
