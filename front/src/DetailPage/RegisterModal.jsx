@@ -1,11 +1,18 @@
 import React,{ useState} from 'react';
-import ReactModal from 'react-modal';
 import styled from 'styled-components';
+import axios from 'axios';
+import ReactModal from 'react-modal';
+import { useNavigate } from 'react-router-dom';
+import { Input } from 'antd';
+import { storageService } from '../RegisterPage/fbase';
+import { getDownloadURL, ref, uploadString } from 'firebase/storage';
+//이미지 및 아이콘
 import { IoCloseSharp } from "react-icons/io5"
 import UploadImg from '../RegisterPage/UploadImg';
-import { Input } from 'antd';
+let index = 0;
 
 const RegisterModal = ({ isOpen, onCancel}) => {
+    const navigate = useNavigate();
     const [image, setImage] = useState("");
     const [historyContent, setHistoryContent] = useState("");
     const { TextArea } = Input;
@@ -16,7 +23,33 @@ const RegisterModal = ({ isOpen, onCancel}) => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
+
         let imgUrl = "";
+
+        if (image !== "") {
+            const fileRef = ref(storageService, `images/${++index}/`);
+            const uploadFile = await uploadString(fileRef, image, "data_url");
+            imgUrl = await getDownloadURL(uploadFile.ref);
+        }
+        console.log("게시물 사진: ",imgUrl, "게시물 내용: ",historyContent);
+        // const res = await axios({
+        //     headers: {
+        //         withCredentials: true,
+        //         "Access-Control-Allow-Origin": "http://localhost:3000",
+        //         'Accept': 'application/json',
+        //     },
+        //     method: 'post',
+        //     url: 'http://hana-umc.shop:8080/new',
+        //     data: {
+        //         imgUrl: imgUrl,
+        //         content: historyContent
+        //     }
+        // })
+        // if (res.data) {
+        //     alert('Added Data');
+        // }
+        setHistoryContent("");
+        onCancel();
     }
 
   const handleClickCancel = () => {
@@ -37,7 +70,7 @@ const RegisterModal = ({ isOpen, onCancel}) => {
                         </UploadStyle>
                     </RegisterPhoto>
                     <TextArea rows={4} value={historyContent} onChange={(e) => setHistoryContent(e.target.value)}style={{width:"500px", marginLeft:"50px", marginTop:"50px",}} placeholder="추억을 작성해주세요!"/>
-                    <SubmitButton type="submit" value="히스토리 등록하기" onClick={handleClickCancel}/>
+                    <SubmitButton type="submit" value="히스토리 등록하기" />
                 </form>
             </div>
           </div>

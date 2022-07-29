@@ -1,4 +1,4 @@
-import React, { Component, Children } from "react";
+import React, { Component, Children, useState} from "react";
 import PropTypes from "prop-types";
 import MyInfo from "../MyPage/MyInfo";
 import "./MyPage.css";
@@ -96,23 +96,31 @@ class TabPanel extends Component {
 }
 
 function MyPage() {
+  const [isOrganization, setIsOrganization] = useState(true);
     return (
       <div>
         <Tabs defaultActiveIndex={0}>
           <TabList>
-            <Tab>
-              개인정보
-            </Tab>
-            <Tab>
-              나의 관심동물
-            </Tab>
+              {
+                  isOrganization==true
+                  ? <Tab>단체정보</Tab>
+                  : <Tab>개인정보</Tab>
+              }
+              {
+                  isOrganization==true
+                  ? <Tab>등록한 동물 목록</Tab>
+                  : <Tab>나의 관심 동물</Tab>
+              }
+
             <Tab> {/*<Tab isDisabled>*/}
               쪽지목록
             </Tab>
           </TabList>
           <TabPanels>
-            <TabPanel><MyInfo></MyInfo></TabPanel>
-            <TabPanel><MyLikeAnimal/></TabPanel>
+            <TabPanel>
+              <MyInfo isOrganization={isOrganization}/>
+            </TabPanel>
+            <TabPanel><MyLikeAnimal isOrganization={isOrganization}/></TabPanel>
             <TabPanel>
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center',  margin: '0 auto'}}>
               <ChatHistory/>

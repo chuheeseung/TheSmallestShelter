@@ -4,24 +4,37 @@ import styled from 'styled-components';
 import user1 from '../assets/img/ProfileImg/Ellipse 67.png';
 import axios from "axios";
 
-function MyInfo(){
+function MyInfo({isOrganization}){
+    console.log();
     return(
         <>
-            <MyInfoTitle>개인정보</MyInfoTitle>
+            {
+                {isOrganization}
+                ?<MyInfoTitle>단체 정보</MyInfoTitle>
+                :<MyInfoTitle>개인 정보</MyInfoTitle>
+            }
             <MyInfoProfile>
                 <ProfileTitle>프로필 사진</ProfileTitle>
                 <ProfileImg src={user1}></ProfileImg>
             </MyInfoProfile>
             <MyInfoDetail>
-                <ProfileTitle>개인 상세정보</ProfileTitle>
+            {
+                {isOrganization}
+                ?<ProfileTitle>단체 상세정보</ProfileTitle>
+                :<ProfileTitle>개인 상세정보</ProfileTitle>
+            }
                 <DetailInfo>
                     <ListItem>
-                        <div>이름</div>
+                        {
+                            {isOrganization}
+                            ?<div>단체 이름</div>
+                            :<div>이름</div>
+                        }
                         <div>전화번호</div>
                         <div>주소</div>
                     </ListItem>
                     <ListUserInfo>
-                        <div>2000.00.00</div>
+                        <div>김성은</div>
                         <div>010-0000-0000</div>
                         <div>경기도 ##시 ##구 ##로 189</div>
                     </ListUserInfo>

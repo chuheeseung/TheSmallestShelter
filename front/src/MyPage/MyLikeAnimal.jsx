@@ -7,7 +7,7 @@ import { Pagination } from 'antd';
 
 const PAGE_SIZE = 10;
 
-function MyLikeAnimal(){
+function MyLikeAnimal({isOrganization}){
     const [cardList,setCardList] = useState([]); // 데이터 받아오는 배열
 
     const [minValue, setMinValue] = useState(0);
@@ -24,8 +24,12 @@ function MyLikeAnimal(){
 
 
     return(
-        <>
-            <MyLikeTitle>나의 관심 동물</MyLikeTitle>
+        <>  
+            {
+                {isOrganization}
+                ?<MyLikeTitle>등록한 동물 목록</MyLikeTitle>
+                :<MyLikeTitle>나의 관심 동물</MyLikeTitle>
+            }
             <DataContainer>
                 {
                     cardList.slice(minValue, maxValue)
