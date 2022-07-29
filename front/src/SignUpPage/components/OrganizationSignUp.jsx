@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './OrganizationSignUp.module.css';
-import logoImage from '../../assets/Group8700.png';
+import logoImage from '../../assets/img/Group8700.png';
 import InputForm from './InputForm';
 
 function OrganizationSignUp() {
