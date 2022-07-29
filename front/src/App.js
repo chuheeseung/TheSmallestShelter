@@ -6,6 +6,7 @@ import Nav from "./components/Nav";
 import ChatScreen from './Screen/ChatScreen';
 import Footer from "./components/Footer";
 import SignInScreen from './Screen/SignInScreen';
+import SignUpScreen from './Screen/SignUpScreen';
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
                 <Route path="/register" element={<RegisterScreen />} />
                 <Route path="/chat" element={<ChatScreen />} />
                 <Route path="/signIn" element={<SignInScreen />} />
+                <Route path="/signUp" element={<SignUpScreen />} />
             </Routes>
         </BrowserRouter>
     );
