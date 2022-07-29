@@ -9,8 +9,7 @@ import { Link } from "react-router-dom";
 function LoggedIn() {
   return (
     <div>
-      {/* 쪽지 누면 마이페이지 쪽지 히스토리로 이동 */}
-      <Link to="/chat"> <Badge count={6} size="small" color="red">
+      <Link to="/mypage"> <Badge count={6} size="small" color="red">
         <span className={style.message}>쪽지</span>
       </Badge></Link>
      

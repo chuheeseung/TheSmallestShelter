@@ -76,11 +76,13 @@
 }
 
 .listContainer {
-  width: 800px;
-  background-color: #f6f6f6;
+  width:100%;
+  background-color: #EFEFEF;
 }
 
 .listHeader {
+  position: relative;
+  width:70vw;
   justify-content: space-between;
 }
 
@@ -89,6 +91,5 @@
   flex-direction: row;
   height: 50px;
   align-items: center;
-  padding: 0 32px;
   border-bottom: 1px solid white;
 }
