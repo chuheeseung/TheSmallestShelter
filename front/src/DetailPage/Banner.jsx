@@ -120,26 +120,14 @@ function Banner({ imgUrl, name, age, gender, species, likedItems, setLikedItems 
                     </Profile>
                     <ProfileIcon>
                         <IconSet>
-<<<<<<< HEAD
                             {
                                 isOrganization==false
                                 ? null
                                 : <>
-                                    <FiMail size="22" style={{marginLeft:"22px"}}/>
+                                    <Link to="/chat"><FiMail size="22" style={{marginLeft:"22px"}}/></Link>
                                 </>
                             }
                         </IconSet>     
-=======
-                            <div onClick={handleBookmark}>
-                                {bookmark ? (
-                                    <AiFillHeart size="24"/>
-                                ) : (
-                                    <AiOutlineHeart size="24"/>
-                                )}
-                            </div>
-                            <Link to="/chat"><FiMail size="22" style={{marginLeft:"22px", color: 'black'}}/></Link>
-                        </IconSet>      
->>>>>>> 41f42884ae76c747312e06a0ae81f63df6e9c2b5
                         {
                             isAdoptSuccess==true
                             ? <img src={SuccessMark} style={{width:"150px"}}/>
