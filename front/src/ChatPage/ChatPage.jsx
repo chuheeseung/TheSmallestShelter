@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ChatHistory from '../ChatHistory/ChatHistory';
 import dummy from './DirectMessageData.json';
 import Message from './Message';
 
@@ -19,14 +20,16 @@ function ChatPage() {
   return (
     <div>
      {messages.length > 0 &&
-        messages.map((message, idx) => (
+        messages.map((message) => (
           <Message
-            key={idx}
+            key={message.messageId}
             message={message.content}
-            user={message.user}
+            sentUser={message.sentUser}
+            receivedUser={message.receivedUser}
           />
         ))
       }
+      <ChatHistory/>
     </div>
   );
 }

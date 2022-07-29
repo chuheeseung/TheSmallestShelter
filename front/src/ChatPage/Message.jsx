@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Message({message, user}) {
+function Message({message, sentUser, receivedUser}) {
   return (
     <div style={{ marginBottom: '3px', display: 'flex' }}>
       <img
@@ -8,13 +8,13 @@ function Message({message, user}) {
         width={48}
         height={48}
         className="mr-3"
-        src={user.image}
-        alt={user.name}
+        src={sentUser.image}
+        alt={sentUser.name}
       />
       <div style={{
         backgroundColor: "#ECECEC"
       }}>
-        <h6>{user.name}{" "}
+        <h6>{sentUser.name}{" "}
           
         </h6>
         <p>{message}</p>

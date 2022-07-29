@@ -4,7 +4,6 @@ import { AiOutlineDown } from 'react-icons/ai';
 import { FiMail } from 'react-icons/fi';
 import style from "./LoggedIn.module.css";
 import userIcon from '../assets/img/Ellipse 36.png';
-import ChatDropDown from "../ChatPage/ChatDropDown";
 import { Link } from "react-router-dom";
 
 function LoggedIn() {
