@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './DataItem.module.css';
-import AdoptedTag from '../../assets/img/adopted.png';
+import AdoptedTag from '../../assets/adopted.png';
 
 
 function DataItem({ id, photoUrl, name, age, gender, species, isAdopted }) {

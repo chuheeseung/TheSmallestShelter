@@ -6,6 +6,12 @@
   margin-bottom: 3rem;
   border-radius: 5px;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.dataContainer:hover {
+  transition: all ease 0.1s;
+  transform: scale(1.02);
 }
 
 .dataPhoto {
