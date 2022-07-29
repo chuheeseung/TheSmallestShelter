@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectType from '../SignUpPage/SelectType';
+import SelectType from '../SignUpPage/components/SelectType';
 
 function SignUpScreen() {
     return (

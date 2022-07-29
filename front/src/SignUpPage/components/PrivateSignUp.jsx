@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './PrivateSignUp.module.css';
-import logoImage from '../../assets/Group8700.png';
+import logoImage from '../../assets/img/Group8700.png';
 import InputForm from './InputForm';
 
 function PrivateSignUp() {
