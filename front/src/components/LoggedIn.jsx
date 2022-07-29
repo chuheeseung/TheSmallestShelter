@@ -13,7 +13,7 @@ function LoggedIn() {
         <span className={style.message}>쪽지</span>
       </Badge></Link>
      
-      <Link to="/chat"style={{color: 'black'}}><FiMail style={{ marginLeft: '24px'}}/></Link>
+      <Link to="/chat" style={{color: 'black'}}><FiMail style={{ marginLeft: '24px'}}/></Link>
      
       <span style={{ margin: "0 24px", fontWeight: "bold" }}>|</span>
 
@@ -40,7 +40,7 @@ const Content = () => {
         </div>
       </div>
       <div className={style.tabWrap}>
-        <p>마이페이지</p>
+        <Link to="/mypage" style={{color: 'black'}}><p>마이페이지</p></Link>
         <p>설정</p>
         <p>로그아웃</p>
       </div>
