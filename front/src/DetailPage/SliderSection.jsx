@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useSwipeable } from 'react-swipeable';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import { slideData } from './SlideDataDummy';
 
 const Container = styled.div`
   overflow: hidden;
@@ -269,16 +270,26 @@ const CarouselItem = styled.img`
 
 const SliderSection = () => (
   <Carousel perPage={3} gutter={12}>
-    <CarouselItem
+  {
+    slideData.results.map((item) => {
+      return (
+        <CarouselItem
+          src = {item.photo}
+        />
+
+      )
+    })
+  }
+    {/* <CarouselItem
       onClick={() => console.log('clicou')}
       src="https://images.unsplash.com/photo-1565225411862-b2a8c8a25101?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"
-    />
-    <CarouselItem src="https://images.unsplash.com/photo-1565766046621-5548ffdf30af?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" />
+    /> */}
+    {/* <CarouselItem src="https://images.unsplash.com/photo-1565766046621-5548ffdf30af?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" />
     <CarouselItem src="https://images.unsplash.com/photo-1565609538970-d592a2d36fb6?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" />
     <CarouselItem src="https://images.unsplash.com/photo-1564558519619-ce9701b83193?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" />
     <CarouselItem src="https://images.unsplash.com/photo-1565128939503-e95077cea904?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" />
     <CarouselItem src="https://images.unsplash.com/photo-1565063407996-ab476d3cd8d4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" />
-    <CarouselItem src="https://images.unsplash.com/photo-1565063407996-ab476d3cd8d4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" />
+    <CarouselItem src="https://images.unsplash.com/photo-1565063407996-ab476d3cd8d4?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max" /> */}
   </Carousel>
 );
 
