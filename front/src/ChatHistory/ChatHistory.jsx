@@ -14,22 +14,43 @@ function ChatHistory() {
   const [clicked, setClicked] = useState("sent");  // 받은/보낸 쪽지 클릭 시 색 변경을 위해 (default: 보낸 쪽지)
   const [checkedItems, setCheckedItems] = useState([]); // 쪽지 전체 선택/해제
 
+  const messagesRef = ref(dbService, "messages");
+
   const chatRoomId = Object.keys(dummy)[0]// (userId-currentUserId) 지금은 하나라 0번 인덱스만 접근
   const currUserId = 'JNVe6U0iGlP4A5Pm65UfXgZju0Z2';  // 현재 사용자 id
   const userId = chatRoomId.split('-').filter(e => e !== currUserId).join();
 
   useEffect(() => {
-    let tmp = [];
-    let chatArr = [];
-    for (var i in dummy[chatRoomId]) {
-      tmp.push(dummy[chatRoomId][i]);
-      if (dummy[chatRoomId][i].sentUser.id === currUserId) {
-        chatArr.push(dummy[chatRoomId][i]);
-      }
-    }
-    setMessages(tmp);
-    setMessage(chatArr)
+    addMessagesListeners(chatRoomId)
   }, [])
+
+  const addMessagesListeners = (chatRoomId) => {
+    let messagesArray = [];
+    let chatArr = [];
+    onChildAdded(child(messagesRef, chatRoomId), DataSnapshot => {
+      messagesArray.push(DataSnapshot.val());
+      if (DataSnapshot.val().sentUser.id === currUserId) {
+        chatArr.push(DataSnapshot.val());
+        setMessage(chatArr);
+        console.log(chatArr)
+      }
+      setMessages(messagesArray);  
+    })
+
+  }
+
+  // useEffect(() => {
+  //   let tmp = [];
+  //   let chatArr = [];
+  //   for (var i in dummy[chatRoomId]) {
+  //     tmp.push(dummy[chatRoomId][i]);
+  //     if (dummy[chatRoomId][i].sentUser.id === currUserId) {
+  //       chatArr.push(dummy[chatRoomId][i]);
+  //     }
+  //   }
+  //   setMessages(tmp);
+  //   setMessage(chatArr)
+  // }, [])
 
   const handleReceivedChat = () => {
     let tmp = messages.filter(e => e.sentUser.id !== currUserId);
@@ -81,7 +102,7 @@ function ChatHistory() {
               onChange={(e) => onCheckAll(e.target.checked)}
               checked={checkedItems.length == message.length ? true : false}
             />
-            {checkedItems.length == message.length ? <GrCheckboxSelected /> : <GrCheckbox />}
+            {message.length > 0 && checkedItems.length == message.length ? <GrCheckboxSelected /> : <GrCheckbox />}
           </label>
           <span style={{ fontWeight: 'bold', marginRight: '250px', marginLeft: '70px' }}>
             {clicked === 'sent'

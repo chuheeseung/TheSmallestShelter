@@ -11,6 +11,7 @@ import {
   } from "@material-ui/core/styles";
 import Popover from "@material-ui/core/Popover";
 import SuccessMark from "../assets/img/SuccessMark.png";
+import { Link } from 'react-router-dom';
 
   
 
@@ -126,7 +127,7 @@ function Banner({ imgUrl, name, age, gender, species }) {
                                     <AiOutlineHeart size="24"/>
                                 )}
                             </div>
-                            <FiMail size="22" style={{marginLeft:"22px"}}/>
+                            <Link to="/chat"><FiMail size="22" style={{marginLeft:"22px", color: 'black'}}/></Link>
                         </IconSet>      
                         {
                             isAdoptSuccess==true

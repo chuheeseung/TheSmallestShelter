@@ -44,23 +44,6 @@ function Register() {
     ]
     const [image, setImage] = useState("");
 
-    // const onChangeCheck = (e) => {
-    //     const { id, value } = e.target;
-    //     setClick(Number(value));
-    //     // setClickId(Number(id));
-    //     let tmp = [];
-    //     tmp = checkVal;
-    //     tmp[id] = Number(value);
-
-    //     let flagObj = {};
-    //     flagObj= checkFlag;
-    //     flagObj[id] = new Array(3).fill(false).fill(true, value-1, value);
-
-    //     setCheckVal(tmp);
-    //     setCheckFlag(flagObj)
-    //     console.log(checkFlag[id])
-    // }
-
     const uploadImage = (img) => {
         setImage(img);
     }
@@ -240,28 +223,6 @@ function Register() {
                                         <p className={style.checkList}>
                                             <span>{item}</span>
                                             <RadioGroup item={item} idx={idx} checkType={checkType} setCheckVal={setCheckVal} checkVal={checkVal}/>
-                                            {/* {
-                                                checkType.map((check, index) => (
-                                                    <>
-                                                        <label>
-                                                            <input
-                                                                id={idx}
-                                                                type='radio'
-                                                                name={item}
-                                                                value={check.value}
-                                                                onChange={onChangeCheck}
-                                                                checked={click === index+1}
-                                                                style={{ display: "none" }}
-                                                            />
- 
-                                                        {checkFlag[idx][index]
-                                                            ? (<img src={check.img_on} style={{ height: '24px' }} />)
-                                                            : (<img src={check.img_off} style={{ height: '24px' }} />)
-                                                        }
-                                                        </label>
-                                                    </>
-                                                ))
-                                            } */}
                                         </p>
                                     ))
                                 }

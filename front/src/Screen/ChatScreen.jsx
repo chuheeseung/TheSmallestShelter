@@ -3,7 +3,15 @@ import ChatPage from '../ChatPage/ChatPage';
 
 function ChatScreen() {
   return (
-    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '70%', margin: '0 auto'}}>
+    <div 
+      style={{
+        display: 'flex',
+        flexDirection: 'column', 
+        alignItems: 'center', 
+        width: '70%', 
+        margin: '0 auto',
+        fontFamily: "Spoqa Han Sans Neo"
+      }}>
       <ChatPage/>
     </div>
   );
