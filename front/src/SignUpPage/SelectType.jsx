@@ -1,7 +1,7 @@
 import React from 'react';
-import logoImage from '../assets/img/Group8700.png';
-import personalImage from '../assets/img/signup_person.png';
-import groupImage from '../assets/img/signup_group.png';
+import logoImage from '../assets/Group8700.png';
+import personalImage from '../assets/signup_person.png';
+import groupImage from '../assets/signup_group.png';
 import { Link } from 'react-router-dom';
 
 function SelectType() {

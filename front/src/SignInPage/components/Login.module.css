@@ -13,9 +13,10 @@
 }
 
 .inputTitle {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 600;
     color: #262626;
+    padding-top: 10px;
 }
 
 .inputWrap {
@@ -28,7 +29,7 @@
 }
 
 .inputWrap:focus-within {
-    border: 1px solid #fbc22e;
+    border: 2px solid #fbc22e;
 }
 
 .input {
@@ -51,8 +52,9 @@
 }
 
 .signUpLink {
-    position: absolute;
-    right: 100px;
+    /* position: relative; */
+    display: block;
+    text-align: right;
     color: black;
     padding-top: 10px;
 }
@@ -71,6 +73,11 @@
     display: block;
     text-align: center;
     cursor: pointer
+}
+
+.bottomButton:hover {
+    transition: all ease 0.1s;
+    transform: scale(1.02);
 }
 
 .bottomButton:disabled {
