@@ -9,6 +9,7 @@ import ReactModal from 'react-modal';
 import HistoryRegister from "../DetailPage/HistoryRegister";
 
 function DetailScreen() {
+    const [likedItems, setLikedItems] = useState([]);
 
     ReactModal.setAppElement('#root');
     // useEffect(()=> {axios({
@@ -25,7 +26,7 @@ function DetailScreen() {
     return (
         <div>
             <div>
-                <Banner />
+                <Banner likedItems={likedItems} setLikedItems={setLikedItems}/>
                 <PostList>
                     <PostListTitle>
                         <div style={{display: 'flex', flex: 1}}>동물 히스토리</div>

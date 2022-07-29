@@ -10,16 +10,15 @@ import {
     createMuiTheme
   } from "@material-ui/core/styles";
 import Popover from "@material-ui/core/Popover";
+import Like from "./Like";
 import SuccessMark from "../assets/img/SuccessMark.png";
 import { Link } from 'react-router-dom';
 
-  
-
-
-function Banner({ imgUrl, name, age, gender, species }) {
+function Banner({ imgUrl, name, age, gender, species, likedItems, setLikedItems }) {
     const [anchorEl, setAnchorEl] = useState(null);
+    const [adopt,setAdopt] = useState(false);
     const [isAdoptSuccess, setIsAdoptSuccess] = useState(true);
-    const [isGroup, setIsGroup] = useState(true);
+    const [isOrganization, setIsOrganization] = useState(true);
     const [bookmark, setBookmark] = useState(false);
 
     const handleBookmark = () => {
@@ -37,6 +36,7 @@ function Banner({ imgUrl, name, age, gender, species }) {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    
     const theme2 = createMuiTheme({
         overrides: {
           MuiPopover: {
@@ -94,7 +94,7 @@ function Banner({ imgUrl, name, age, gender, species }) {
                                         나이
                                     </InfoItem1>
                                     {
-                                        isGroup==true
+                                        isOrganization==true
                                         ? <div style={{marginTop:"19px"}}><Checkbox onChange={onChange}></Checkbox></div>
                                         : null
                                     }
@@ -110,7 +110,7 @@ function Banner({ imgUrl, name, age, gender, species }) {
                                         2살
                                     </InfoItem2>
                                     {
-                                        isGroup==true
+                                        isOrganization==true
                                         ? <InfoItem2>입양 상태</InfoItem2>
                                         : null
                                     }
@@ -120,15 +120,14 @@ function Banner({ imgUrl, name, age, gender, species }) {
                     </Profile>
                     <ProfileIcon>
                         <IconSet>
-                            <div onClick={handleBookmark}>
-                                {bookmark ? (
-                                    <AiFillHeart size="24"/>
-                                ) : (
-                                    <AiOutlineHeart size="24"/>
-                                )}
-                            </div>
-                            <Link to="/chat"><FiMail size="22" style={{marginLeft:"22px", color: 'black'}}/></Link>
-                        </IconSet>      
+                            {
+                                isOrganization==false
+                                ? null
+                                : <>
+                                    <Link to="/chat"><FiMail size="22" style={{marginLeft:"22px"}}/></Link>
+                                </>
+                            }
+                        </IconSet>     
                         {
                             isAdoptSuccess==true
                             ? <img src={SuccessMark} style={{width:"150px"}}/>
