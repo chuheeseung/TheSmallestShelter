@@ -8,6 +8,8 @@ import Footer from "./components/Footer";
 import SignInScreen from './Screen/SignInScreen';
 import SignUpScreen from './Screen/SignUpScreen';
 import MyPage from './Screen/MyScreen';
+import PrivateSignUp from './SignUpPage/components/PrivateSignUp';
+import OrganizationSignUp from './SignUpPage/components/OrganizationSignUp';
 
 const App = () => {
     return (
@@ -18,10 +20,16 @@ const App = () => {
                 <Route path="/detail" element={<DetailScreen />} />
                 <Route path="/register" element={<RegisterScreen />} />
                 <Route path="/mypage" element={<MyPage />} />
-                <Route path="/chat" element={<ChatScreen />} />
+                <Route path="/chat/:chatRoomId" element={<ChatScreen />} />
                 <Route path="/signIn" element={<SignInScreen />} />
                 <Route path="/signUp" element={<SignUpScreen />} />
+                <Route path="/chat" element={<ChatScreen />} />
+                <Route path="/signin" element={<SignInScreen />} />
+                <Route path="/signup" element={<SignUpScreen />} />
+                <Route path="/signup/private" element={<PrivateSignUp />} />
+                <Route path="/signup/organization" element={<OrganizationSignUp/>} />
             </Routes>
+            <Footer/>
         </BrowserRouter>
     );
 };
