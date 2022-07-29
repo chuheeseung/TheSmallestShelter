@@ -12,7 +12,7 @@ function LoggedIn() {
 
   return (
     <div>
-      <Link to="/chat"> <Badge count={6} size="small" color="red">
+      <Link to="/mypage"> <Badge count={6} size="small" color="red">
         <span className={style.message}>쪽지</span>
       </Badge></Link>
      

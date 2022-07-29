@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import MyInfo from "../MyPage/MyInfo";
 import "./MyPage.css";
 import MyLikeAnimal from "./MyLikeAnimal";
+import Chat from '../ChatPage/Chat';
+import styled from 'styled-components';
+
 
 class Tabs extends Component {
   static childContextTypes = {
@@ -30,7 +33,7 @@ class Tabs extends Component {
   };
 
   render() {
-    return <div className="Tabs">{this.props.children}</div>;
+    return <TabsStyle>{this.props.children}</TabsStyle>;
   }
 }
 
@@ -48,7 +51,7 @@ class TabList extends Component {
         onSelect: () => this.context.onSelectTab(index)
       });
     });
-    return <div className="tabs">{children}</div>;
+    return <TabsItems>{children}</TabsItems>;
   }
 }
 
@@ -58,7 +61,7 @@ class Tab extends Component {
     return (
       <div
         className={
-          isDisabled ? "tab disabled" : isActive ? "tab active" : "tab"
+          isActive ? "tab active" : "tab"
         }
         onClick={isDisabled ? null : onSelect}
       >
@@ -76,7 +79,13 @@ class TabPanels extends Component {
   render() {
     const { children } = this.props;
     const { activeIndex } = this.context;
-    return <div className="panels">{children[activeIndex]}</div>;
+      if(activeIndex==1){
+        return <LikePanels>{children[activeIndex]}</LikePanels>;
+      }
+      else{
+        return <Panels>{children[activeIndex]}</Panels>;
+      }
+
   }
 }
 
@@ -104,7 +113,11 @@ function MyPage() {
           <TabPanels>
             <TabPanel><MyInfo></MyInfo></TabPanel>
             <TabPanel><MyLikeAnimal/></TabPanel>
-            <TabPanel>SPACE</TabPanel>
+            <TabPanel>
+            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center',  margin: '0 auto'}}>
+              <Chat/>
+            </div>
+            </TabPanel>
           </TabPanels>
         </Tabs>
       </div>
@@ -112,3 +125,35 @@ function MyPage() {
   }
 
 export default MyPage;
+
+//마이페이지 스타일드 컴포넌트
+const TabsStyle=styled.div`
+  display: flex;
+  width: 95%;
+`;
+
+const TabsItems=styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin:50px 0px 50px 50px;
+  width:900px;  
+`;
+
+const Panels=styled.div`
+    background: #EFEFEF;
+    height:600px;
+    padding: 20px;
+    margin-top:60px;
+    width:250%;
+    border-radius: 15px;
+`;
+
+const LikePanels=styled.div`
+    background: #EFEFEF;
+    height:100%;
+    padding: 20px;
+    margin-top:60px;
+    width:250%;
+    border-radius: 15px;
+`;
