@@ -3,10 +3,10 @@ import Banner from "../DetailPage/Banner";
 import Posts from "../DetailPage/Posts";
 import SliderSection from "../DetailPage/SliderSection";
 import axios from "axios";
-import Nav from "../components/Nav"
 import { detailData } from '../DetailPage/dataDummy';
 import styled from 'styled-components';
 import ReactModal from 'react-modal';
+import HistoryRegister from "../DetailPage/HistoryRegister";
 
 function DetailScreen() {
 
@@ -27,7 +27,10 @@ function DetailScreen() {
             <div>
                 <Banner />
                 <PostList>
-                    <PostListTitle><div>동물 히스토리</div><a href>+</a></PostListTitle>
+                    <PostListTitle>
+                        <div style={{display: 'flex', flex: 1}}>동물 히스토리</div>
+                        <HistoryRegister/>
+                    </PostListTitle>
                     <PostContainer>
                         {
                             detailData.results.map((item) => {
@@ -61,22 +64,24 @@ const PostListTitle=styled.div`
   font-family: 'Spoqa Han Sans Neo';
   font-weight: 700;
   font-size: 18px;
-  margin :25px 90px;
+  margin :25px 90px 25px 90px;
   color: black;
   padding-left: 24px;
   display:flex;
   justify-content:space-between;
+  
 `
 
 const PostContainer=styled.div`
   background-color:white;
   border-radius:15px;
-  margin:0px 50px 50px 50px;
+  margin:0px 90px 50px 90px;
+  padding-left:55px;
   align-items: center;
   display: flex;
   flex-wrap: wrap;
   box-shadow: 2px 5px 10px 5px lightgray;
-  justify-content: center;
+  justify-content: flex-start;
   height: 500px;
   overflow-y: scroll;
 `;

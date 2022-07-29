@@ -26,13 +26,13 @@ export default function Posts({ imgUrl, name, info }) {
     return (
        <>
             <PhotoContainer onClick={handleClick}>
-                <img src={imgUrl} alt="대표 사진" style={{width:"300px", height: "300px",margin: "10px", borderRadius:"15px", objectFit: "cover"}}/>
-                <div className="photo-morahazi" >
-                    <div className="photo-name">{name}</div>
-                    <div className="photo-info" >
+                <img src={imgUrl} alt="대표 사진" style={{width:"220px", height: "220px",margin: "10px", borderRadius:"15px", objectFit: "cover"}}/>
+                <PhotoContent>
+                    <PhotoName>{name}</PhotoName>
+                    <PhotoInfo>
                         <span>{info}</span>
-                    </div>
-                </div>
+                    </PhotoInfo>
+                </PhotoContent>
                     
             </PhotoContainer>
             <Modal isOpen={isOpen} onSubmit={handleModalSubmit} onCancel={handleModalCancel} 
@@ -42,14 +42,29 @@ export default function Posts({ imgUrl, name, info }) {
             
             />
         </>
-
-
-
     );
 }
 
 const PhotoContainer=styled.div`
-
     margin: 16px;
     border-radius: 15px;
+`;
+
+const PhotoContent=styled.div`
+  padding: 8px;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const PhotoName=styled.div`
+  margin: 0;
+  font-size: 17px;
+  font-weight: bold;
+`;
+
+const PhotoInfo=styled.div`
+  display: block;
+  &:span{
+    margin-right: 8px;
+  }
 `;
