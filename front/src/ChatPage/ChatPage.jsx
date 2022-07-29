@@ -6,11 +6,13 @@ import ChatHeader from './ChatHeader';
 import ChatForm from './ChatForm';
 import { dbService } from '../RegisterPage/fbase';
 import { child, DataSnapshot, onChildAdded, ref } from 'firebase/database';
+import { useParams } from 'react-router-dom';
 
 function ChatPage() {
-  const [messages, setMessages] = useState([]); // 모든 쪽지 내역
+  const {chatRoomId} = useParams();
   const messagesRef = ref(dbService, "messages");
-  const chatRoomId = Object.keys(dummy)[0]// (userId-currentUserId) 지금은 하나라 0번 인덱스만 접근
+  const [messages, setMessages] = useState([]); // 모든 쪽지 내역
+  
   const currUserId = 'JNVe6U0iGlP4A5Pm65UfXgZju0Z2';  // 현재 사용자 id
   const userId = chatRoomId.split('-').filter(e => e !== currUserId).join();
 
@@ -18,7 +20,7 @@ function ChatPage() {
   const user = {
     id: userId,
     name: "유행사",
-    img: "http://gravatar.com/avatar/0f7c362b0125aaff368169c8acc4dd39?d=identicon"
+    image: "http://gravatar.com/avatar/0f7c362b0125aaff368169c8acc4dd39?d=identicon"
   }
 
   useEffect(() => {

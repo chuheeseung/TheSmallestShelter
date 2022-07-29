@@ -12,9 +12,30 @@ import {
 import Popover from "@material-ui/core/Popover";
 import Like from "./Like";
 import SuccessMark from "../assets/img/SuccessMark.png";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Banner({ imgUrl, name, age, gender, species, likedItems, setLikedItems }) {
+    const navigate = useNavigate();
+    // 임시
+    const currUser = {
+        "id": "JNVe6U0iGlP4A5Pm65UfXgZju0Z2",
+        "image": "http://gravatar.com/avatar/ba97c141500abffb0aee54dbcaee59ff?d=identicon",
+        "name": "입양희망자"
+    };
+    const user = {
+        "id": "VRHxfEj1c1g0pbsAiYut1x2VzvP2",
+        "image": "http://gravatar.com/avatar/0f7c362b0125aaff368169c8acc4dd39?d=identicon",
+        "name": "유행사"
+    }
+    const chatRoomId = getChatRoomId(currUser, user);
+    function getChatRoomId(currUser, user) {
+        const currUserId = currUser.id
+        const userId = user.id
+        return userId < currUserId
+            ? `${userId}-${currUserId}`
+            : `${currUserId}-${userId}`
+    }
+
     const [anchorEl, setAnchorEl] = useState(null);
     const [adopt,setAdopt] = useState(false);
     const [isAdoptSuccess, setIsAdoptSuccess] = useState(true);
@@ -124,7 +145,7 @@ function Banner({ imgUrl, name, age, gender, species, likedItems, setLikedItems 
                                 isOrganization==false
                                 ? null
                                 : <>
-                                    <Link to="/chat"><FiMail size="22" style={{marginLeft:"22px"}}/></Link>
+                                    <FiMail size="22" style={{ marginLeft: "22px"}} onClick={() => navigate(`/chat/${chatRoomId}`)}/>
                                 </>
                             }
                         </IconSet>     
@@ -236,5 +257,4 @@ const IconSet=styled.div`
 `;
 
 export default Banner
-
 
