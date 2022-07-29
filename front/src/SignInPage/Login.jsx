@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import logoImage from '../assets/Group8700.png';
+import logoImage from '../assets/img/Group8700.png';
 import style from './Login.module.css';
 import userDummy from './userDummy';
 

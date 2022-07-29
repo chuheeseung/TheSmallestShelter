@@ -3,7 +3,7 @@ import style from "./ChatPage.module.css";
 import { GrFormClose } from 'react-icons/gr';
 import { dbService } from '../RegisterPage/fbase';
 import { child, push, ref, set } from 'firebase/database';
-import userIcon from '../assets/Ellipse 36.png';
+import userIcon from '../assets/img/Ellipse 36.png';
 import { useLocation } from 'react-router-dom';
 
 function ChatDropDown() {
