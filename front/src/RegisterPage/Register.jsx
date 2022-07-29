@@ -9,12 +9,12 @@ import { useNavigate } from 'react-router-dom';
 import { storageService } from './fbase';
 import { getDownloadURL, ref, uploadString } from 'firebase/storage';
 
-import perfect_on from '../assets/perfect_on.png';
-import perfect_off from '../assets/perfect_off.png';
-import practice_on from '../assets/practice_on.png';
-import practice_off from '../assets/practice_off.png';
-import lack_on from '../assets/lack_on.png';
-import lack_off from '../assets/lack_off.png';
+import perfect_on from '../assets/img/perfect_on.png';
+import perfect_off from '../assets/img/perfect_off.png';
+import practice_on from '../assets/img/practice_on.png';
+import practice_off from '../assets/img/practice_off.png';
+import lack_on from '../assets/img/lack_on.png';
+import lack_off from '../assets/img/lack_off.png';
 import RadioGroup from './RadioGroup';
 const { Option } = Select;
 let index = 0;
