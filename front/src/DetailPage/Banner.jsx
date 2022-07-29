@@ -12,6 +12,7 @@ import {
 import Popover from "@material-ui/core/Popover";
 import Like from "./Like";
 import SuccessMark from "../assets/img/SuccessMark.png";
+import { Link } from 'react-router-dom';
 
 function Banner({ imgUrl, name, age, gender, species, likedItems, setLikedItems }) {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -119,6 +120,7 @@ function Banner({ imgUrl, name, age, gender, species, likedItems, setLikedItems 
                     </Profile>
                     <ProfileIcon>
                         <IconSet>
+<<<<<<< HEAD
                             {
                                 isOrganization==false
                                 ? null
@@ -127,6 +129,17 @@ function Banner({ imgUrl, name, age, gender, species, likedItems, setLikedItems 
                                 </>
                             }
                         </IconSet>     
+=======
+                            <div onClick={handleBookmark}>
+                                {bookmark ? (
+                                    <AiFillHeart size="24"/>
+                                ) : (
+                                    <AiOutlineHeart size="24"/>
+                                )}
+                            </div>
+                            <Link to="/chat"><FiMail size="22" style={{marginLeft:"22px", color: 'black'}}/></Link>
+                        </IconSet>      
+>>>>>>> 41f42884ae76c747312e06a0ae81f63df6e9c2b5
                         {
                             isAdoptSuccess==true
                             ? <img src={SuccessMark} style={{width:"150px"}}/>

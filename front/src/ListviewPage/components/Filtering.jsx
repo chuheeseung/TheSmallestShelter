@@ -1,18 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './Filtering.module.css';
 import { Select } from 'antd';
+import searchButtonImage from '../../assets/img/search.png';
+import trashButtonImage from '../../assets/img/trash.png';
 
 const { Option } = Select;
 
-const filterCategory = ['species', 'gender', 'age', 'isAdopted'];
-const filterData = {
-  species: ['전체', '강아지', '고양이'],
-  gender: ['전체', '암컷', '수컷', '암컷(중성화O)', '수컷(중성화O)'],
-  age: ['전체', 'Puppy (0살)', 'Junior (1살~2살)', 'Adult (3살~8살)', 'Senior (9살~)'],
-  isAdopted: ['전체', '입양 완료', '보호중'],
-};
-
-function Filtering() {
+function Filtering({ ...cardList }) {
   const filterCategory = ['species', 'gender', 'age', 'isAdopted'];
   const filterData = {
     species: ['전체', '강아지', '고양이'],
@@ -21,9 +15,20 @@ function Filtering() {
     isAdopted: ['전체', '입양 완료', '보호중'],
   };
 
+  const [data, setData] = useState([]);
+  // const [newData, setNewData] = useState([]);
+
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
+
+  const handleFilterButton = () => {
+    // setData(...cardList);
+    // console.log(...data);
+  };
+
+  const handleResetButton = () => {};
+
 
   return (
     <div className={style.filterContent}>
@@ -76,6 +81,14 @@ function Filtering() {
           <Option className={style.filterItem} value={filterData.isAdopted[1]}>{filterData.isAdopted[1]}</Option>
           <Option className={style.filterItem} value={filterData.isAdopted[2]}>{filterData.isAdopted[2]}</Option>
         </Select>
+      </div>
+      <div className={style.buttonWrap}>
+        <button className={style.buttonItem} onClick={handleFilterButton}>
+          <img className={style.buttonImage} src={searchButtonImage} alt={searchButtonImage} />
+        </button>
+        <button className={style.buttonItem} onClick={handleResetButton}>
+        <img className={style.buttonImage} src={trashButtonImage} alt={trashButtonImage} />
+        </button>
       </div>
     </div>
   )

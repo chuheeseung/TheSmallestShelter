@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { Badge, Dropdown, Space } from 'antd';
 import { AiOutlineDown } from 'react-icons/ai';
-import { FiMail } from 'react-icons/fi';
 import style from "./LoggedIn.module.css";
 import userIcon from '../assets/img/Ellipse 36.png';
 import { Link } from "react-router-dom";
@@ -12,8 +11,6 @@ function LoggedIn() {
       <Link to="/mypage"> <Badge count={6} size="small" color="red">
         <span className={style.message}>쪽지</span>
       </Badge></Link>
-     
-      <Link to="/chat"style={{color: 'black'}}><FiMail style={{ marginLeft: '24px'}}/></Link>
      
       <span style={{ margin: "0 24px", fontWeight: "bold" }}>|</span>
 
@@ -40,7 +37,7 @@ const Content = () => {
         </div>
       </div>
       <div className={style.tabWrap}>
-        <p>마이페이지</p>
+        <Link to="/mypage" style={{color: 'black'}}><p>마이페이지</p></Link>
         <p>설정</p>
         <p>로그아웃</p>
       </div>

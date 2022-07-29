@@ -6,6 +6,7 @@
   padding: 10px;
   display: flex;
   justify-content: center;
+  border-radius: 20px;
 }
 
 .filterWrap {
@@ -22,8 +23,30 @@
 
 .filterSection {
   width: 150px;
+  height: 35px;
 }
 
 .filterItem {
   text-align: center;
+}
+
+.buttonWrap {
+  display: flex;
+  text-align: center;
+}
+
+.buttonItem {
+  border: none;
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+.buttonItem:hover {
+  transition: all ease 0.1s;
+  transform: scale(1.02);
+}
+
+.buttonImage {
+  width: 36px;
+  height: 36px;
 }

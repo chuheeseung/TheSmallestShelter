@@ -5,7 +5,6 @@ import style from "./ChatHistory.module.css";
 import { GrCheckbox, GrCheckboxSelected } from 'react-icons/gr';
 
 function ChatHistoryList({ message, sentUser, receivedUser, checkedItems, handleSingleChange, clicked }) {
-
   return (
     <div className={style.listWrap}>
       <label>
@@ -18,7 +17,6 @@ function ChatHistoryList({ message, sentUser, receivedUser, checkedItems, handle
         />
         {checkedItems.includes(message) ? <GrCheckboxSelected/> : <GrCheckbox/>}
       </label>
-      
       <span style={{marginRight: '240px', marginLeft: '70px'}}>
         {clicked === 'sent' ? `${receivedUser.name}` : `${sentUser.name}`}
       </span>
