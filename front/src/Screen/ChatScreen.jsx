@@ -10,7 +10,7 @@ function ChatScreen() {
         alignItems: 'center', 
         width: '70%', 
         margin: '0 auto',
-        fontFamily: "Spoqa Han Sans Neo"
+        fontFamily: "SpoqaHanSansNeo"
       }}>
       <ChatPage/>
     </div>

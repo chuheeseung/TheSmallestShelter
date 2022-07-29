@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import style from './Filtering.module.css';
 import { Select } from 'antd';
-import searchButtonImage from '../../assets/search.png';
-import trashButtonImage from '../../assets/trash.png';
+import searchButtonImage from '../../assets/img/search.png';
+import trashButtonImage from '../../assets/img/trash.png';
 
 const { Option } = Select;
 

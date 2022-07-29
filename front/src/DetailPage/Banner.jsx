@@ -8,19 +8,40 @@ import 'antd/dist/antd.css';
 import {
     MuiThemeProvider,
     createMuiTheme
-  } from "@material-ui/core/styles";
+} from "@material-ui/core/styles";
 import Popover from "@material-ui/core/Popover";
 import SuccessMark from "../assets/img/SuccessMark.png";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-  
+
 
 
 function Banner({ imgUrl, name, age, gender, species }) {
+    const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState(null);
     const [isAdoptSuccess, setIsAdoptSuccess] = useState(true);
     const [isGroup, setIsGroup] = useState(true);
     const [bookmark, setBookmark] = useState(false);
+
+    // 임시
+    const currUser = {
+        "id": "JNVe6U0iGlP4A5Pm65UfXgZju0Z2",
+        "image": "http://gravatar.com/avatar/ba97c141500abffb0aee54dbcaee59ff?d=identicon",
+        "name": "입양희망자"
+    };
+    const user = {
+        "id": "VRHxfEj1c1g0pbsAiYut1x2VzvP2",
+        "image": "http://gravatar.com/avatar/0f7c362b0125aaff368169c8acc4dd39?d=identicon",
+        "name": "유행사"
+    }
+    const chatRoomId = getChatRoomId(currUser, user);
+    function getChatRoomId(currUser, user) {
+        const currUserId = currUser.id
+        const userId = user.id
+        return userId < currUserId
+            ? `${userId}-${currUserId}`
+            : `${currUserId}-${userId}`
+    }
 
     const handleBookmark = () => {
         setBookmark(!bookmark);
@@ -28,7 +49,7 @@ function Banner({ imgUrl, name, age, gender, species }) {
 
     const onChange = (e) => {
         console.log(`checked = ${e.target.checked}`);
-      };
+    };
 
     const handleClick = event => {
         setAnchorEl(event.currentTarget);
@@ -39,27 +60,27 @@ function Banner({ imgUrl, name, age, gender, species }) {
     };
     const theme2 = createMuiTheme({
         overrides: {
-          MuiPopover: {
-            root: {
-            },
-            paper: {
-                padding:"20px",
-                borderRadius:"20px",
-                height:"120px",
-                border:"1px solid #D2D2D2",
-            
+            MuiPopover: {
+                root: {
+                },
+                paper: {
+                    padding: "20px",
+                    borderRadius: "20px",
+                    height: "120px",
+                    border: "1px solid #D2D2D2",
+
+                }
             }
-          }
         }
-      });
-        return (
-            <RootBanner>
-                <DetailTitle>동물 상세 정보</DetailTitle>
-                <ContainerBanner>
-                    <Profile>
-                        <ProfileImg src="https://mblogthumb-phinf.pstatic.net/MjAyMTAxMTRfOTgg/MDAxNjEwNjE0MDg3ODcy.28hxXvxgn2WbHgG7ZiL64bxAiizC3JBZwKCRP-8PcQIg.EDx8izDu_pCfgLBg7F15z7yARZfsEpvk15sX3INo8ZEg.JPEG.brteddy/IMG_0343.jpg?type=w800"/>
-                        <PetInfo>
-                            <PetName> 길동이 / <button onClick={handleClick} style={{background:"none", border:"none", fontWeight:"700",}}>&nbsp;유행사</button>
+    });
+    return (
+        <RootBanner>
+            <DetailTitle>동물 상세 정보</DetailTitle>
+            <ContainerBanner>
+                <Profile>
+                    <ProfileImg src="https://mblogthumb-phinf.pstatic.net/MjAyMTAxMTRfOTgg/MDAxNjEwNjE0MDg3ODcy.28hxXvxgn2WbHgG7ZiL64bxAiizC3JBZwKCRP-8PcQIg.EDx8izDu_pCfgLBg7F15z7yARZfsEpvk15sX3INo8ZEg.JPEG.brteddy/IMG_0343.jpg?type=w800" />
+                    <PetInfo>
+                        <PetName> 길동이 / <button onClick={handleClick} style={{ background: "none", border: "none", fontWeight: "700", }}>&nbsp;유행사</button>
                             <MuiThemeProvider theme={theme2}>
                                 <Popover
                                     id="popover-with-anchor"
@@ -80,67 +101,67 @@ function Banner({ imgUrl, name, age, gender, species }) {
                                     <GroupInfo>02-554-3349</GroupInfo>
                                 </Popover>
                             </MuiThemeProvider>
-                            </PetName>
-                            
-                            <PetParagraph>
-                                <InfoParagraph>
-                                    <InfoItem1>
-                                        동물종류
-                                    </InfoItem1>
-                                    <InfoItem1>
-                                        성별
-                                    </InfoItem1>
-                                    <InfoItem1>
-                                        나이
-                                    </InfoItem1>
-                                    {
-                                        isGroup==true
-                                        ? <div style={{marginTop:"19px"}}><Checkbox onChange={onChange}></Checkbox></div>
+                        </PetName>
+
+                        <PetParagraph>
+                            <InfoParagraph>
+                                <InfoItem1>
+                                    동물종류
+                                </InfoItem1>
+                                <InfoItem1>
+                                    성별
+                                </InfoItem1>
+                                <InfoItem1>
+                                    나이
+                                </InfoItem1>
+                                {
+                                    isGroup == true
+                                        ? <div style={{ marginTop: "19px" }}><Checkbox onChange={onChange}></Checkbox></div>
                                         : null
-                                    }
-                                </InfoParagraph>
-                                <InfoParagraph>
-                                    <InfoItem2>
-                                        고양이
-                                    </InfoItem2>
-                                    <InfoItem2>
-                                        여
-                                    </InfoItem2>
-                                    <InfoItem2>
-                                        2살
-                                    </InfoItem2>
-                                    {
-                                        isGroup==true
+                                }
+                            </InfoParagraph>
+                            <InfoParagraph>
+                                <InfoItem2>
+                                    고양이
+                                </InfoItem2>
+                                <InfoItem2>
+                                    여
+                                </InfoItem2>
+                                <InfoItem2>
+                                    2살
+                                </InfoItem2>
+                                {
+                                    isGroup == true
                                         ? <InfoItem2>입양 상태</InfoItem2>
                                         : null
-                                    }
-                                </InfoParagraph>
-                            </PetParagraph>
-                        </PetInfo>
-                    </Profile>
-                    <ProfileIcon>
-                        <IconSet>
-                            <div onClick={handleBookmark}>
-                                {bookmark ? (
-                                    <AiFillHeart size="24"/>
-                                ) : (
-                                    <AiOutlineHeart size="24"/>
-                                )}
-                            </div>
-                            <Link to="/chat"><FiMail size="22" style={{marginLeft:"22px", color: 'black'}}/></Link>
-                        </IconSet>      
-                        {
-                            isAdoptSuccess==true
-                            ? <img src={SuccessMark} style={{width:"150px"}}/>
+                                }
+                            </InfoParagraph>
+                        </PetParagraph>
+                    </PetInfo>
+                </Profile>
+                <ProfileIcon>
+                    <IconSet>
+                        <div onClick={handleBookmark}>
+                            {bookmark ? (
+                                <AiFillHeart size="24" />
+                            ) : (
+                                <AiOutlineHeart size="24" />
+                            )}
+                        </div>
+                        <FiMail size="22" style={{ marginLeft: "22px"}} onClick={() => navigate(`/chat/${chatRoomId}`)}/>
+                    </IconSet>
+                    {
+                        isAdoptSuccess == true
+                            ? <img src={SuccessMark} style={{ width: "150px" }} />
                             : null
-                        }
-                    </ProfileIcon>
-                </ContainerBanner>
-            </RootBanner>
-        )
+                    }
+                </ProfileIcon>
+            </ContainerBanner>
+        </RootBanner>
+    )
 }
 
-const RootBanner=styled.section`
+const RootBanner = styled.section`
     width: 100%;
     height: 460px;
     background: #FBC22E;
@@ -149,7 +170,7 @@ const RootBanner=styled.section`
 
 `;
 
-const ContainerBanner=styled.div`
+const ContainerBanner = styled.div`
     display:flex;
     justify-content:space-between;
     align-content:center;
@@ -159,19 +180,19 @@ const ContainerBanner=styled.div`
     padding: 40px 100px;
 `
 
-const Profile= styled.div`
+const Profile = styled.div`
     display:flex;  
 
 `;
 
-const DetailTitle=styled.h3`
+const DetailTitle = styled.h3`
     font-weight: 700;
     margin :25px 100px;
     color: white;
     
 `;
 
-const ProfileImg= styled.img `
+const ProfileImg = styled.img`
     object-fit: cover;
     border-radius: 10px;
     padding-top: 7px;
@@ -179,51 +200,51 @@ const ProfileImg= styled.img `
     height:275px;
 `;
 
-const PetInfo=styled.div`
+const PetInfo = styled.div`
     margin-left: 50px;
 `;
 
-const PetName=styled.h1`
+const PetName = styled.h1`
     font-weight: 900;
     display:flex;
 `;
 
-const GroupTitle=styled.div`
+const GroupTitle = styled.div`
     color:#FBC22E;
     font-weight: 700;
 `;
 
-const GroupInfo=styled.div`
+const GroupInfo = styled.div`
     margin-top:3px;
     color:#333333 ;
     font-size:12px;
     font-weight: 700;
 `;
 
-const PetParagraph=styled.div`
+const PetParagraph = styled.div`
     display:flex;
     flex-direction:row;
     justify-content:space-between;
     align-items:center;
 `
 
-const InfoParagraph=styled.p`
+const InfoParagraph = styled.p`
     display:flex;
     flex-direction:column;
     justify-content:space-between;
     align-items:left;
 `;
 
-const InfoItem1=styled.h5`
+const InfoItem1 = styled.h5`
     margin-top:20px;
 `
 
-const InfoItem2=styled.div`
+const InfoItem2 = styled.div`
     margin-top:23px;
     font-weight:700;
     font-size:13px;
 `
-const ProfileIcon=styled.div`
+const ProfileIcon = styled.div`
     display:flex;
     flex-wrap:wrap;
     flex-direction:column;
@@ -232,7 +253,7 @@ const ProfileIcon=styled.div`
 
 `;
 
-const IconSet=styled.div`
+const IconSet = styled.div`
     display:flex;
 `;
 

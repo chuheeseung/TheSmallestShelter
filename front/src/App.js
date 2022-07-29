@@ -18,7 +18,7 @@ const App = () => {
                 <Route path="/detail" element={<DetailScreen />} />
                 <Route path="/register" element={<RegisterScreen />} />
                 <Route path="/mypage" element={<MyPage />} />
-                <Route path="/chat" element={<ChatScreen />} />
+                <Route path="/chat/:chatRoomId" element={<ChatScreen />} />
                 <Route path="/signIn" element={<SignInScreen />} />
                 <Route path="/signUp" element={<SignUpScreen />} />
             </Routes>
