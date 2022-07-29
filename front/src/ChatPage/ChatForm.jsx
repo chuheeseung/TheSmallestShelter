@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { dbService } from '../RegisterPage/fbase';
+import { dbService, storeService } from '../RegisterPage/fbase';
 import { child, push, ref, set } from 'firebase/database';
 import style from './ChatPage.module.css';
 import { CgSmile } from 'react-icons/cg';
 import { BiRightArrowAlt } from 'react-icons/bi';
+import { addDoc, collection } from 'firebase/firestore';
 
 function ChatForm() {
   const messagesRef = ref(dbService, "messages");
@@ -68,7 +69,10 @@ function ChatForm() {
     }
     setLoading(true);
     try {
+      // realtime database 저장
       await set(push(child(messagesRef, chatRoomId)), createMessage());
+      // firestore 저장
+      await addDoc(collection(storeService, chatRoomId), createMessage())
       setLoading(false);
       setContent("");
       setErrors([]);
