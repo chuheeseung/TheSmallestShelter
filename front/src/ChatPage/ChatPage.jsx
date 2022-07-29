@@ -3,9 +3,13 @@ import dummy from './DirectMessageData.json';
 import Message from './Message';
 import style from './ChatPage.module.css';
 import ChatHeader from './ChatHeader';
+import ChatForm from './ChatForm';
+import { dbService } from '../RegisterPage/fbase';
+import { child, DataSnapshot, onChildAdded, ref } from 'firebase/database';
 
 function ChatPage() {
   const [messages, setMessages] = useState([]); // 모든 쪽지 내역
+  const messagesRef = ref(dbService, "messages");
   const chatRoomId = Object.keys(dummy)[0]// (userId-currentUserId) 지금은 하나라 0번 인덱스만 접근
   const currUserId = 'JNVe6U0iGlP4A5Pm65UfXgZju0Z2';  // 현재 사용자 id
   const userId = chatRoomId.split('-').filter(e => e !== currUserId).join();
@@ -18,12 +22,16 @@ function ChatPage() {
   }
 
   useEffect(() => {
-    let tmp = [];
-    for (var i in dummy[chatRoomId]) {
-      tmp.push(dummy[chatRoomId][i]);
-    }
-    setMessages(tmp)
+    addMessagesListeners(chatRoomId)
   }, [])
+
+  const addMessagesListeners = (chatRoomId) => {
+    let messagesArray = [];
+    onChildAdded(child(messagesRef, chatRoomId), DataSnapshot => {
+      messagesArray.push(DataSnapshot.val());
+      setMessages(messagesArray);
+    })
+  }
 
   return (
     <div className={style.chatContainer}>
@@ -40,7 +48,7 @@ function ChatPage() {
           ))
         }
       </div>
-
+      <ChatForm/>
     </div>
   );
 }
