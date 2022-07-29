@@ -1,4 +1,4 @@
-.Test {
+/* .Test {
     padding-top: 55px;
     color: hsl(240, 5%, 20%);
     height: 100vh;
@@ -10,20 +10,7 @@
     );
     background-color: hsl(199, 94%, 67%);
   }
-  
-  .Tabs {
-    display: flex;
-    width: 1250px;
-  }
-  
-  .tabs {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    margin:50px 0px 50px 50px;
-    width:900px;
-  }
-  
+   */
   .tab {
     font-weight: bold;
     padding: 28px 0px 28px 20px;
@@ -53,14 +40,5 @@
   
   .tab.disabled {
     opacity: 0.25;
-  }
-  
-  .panels {
-    background: #EFEFEF;
-    height:600px;
-    padding: 20px;
-    margin-top:60px;
-    width:250%;
-    border-radius: 15px;
   }
   

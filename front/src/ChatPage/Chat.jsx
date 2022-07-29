@@ -1,12 +1,12 @@
-import { child, DataSnapshot, onChildAdded, ref } from 'firebase/database';
+// import { child, DataSnapshot, onChildAdded, ref } from 'firebase/database';
+// import { dbService } from '../RegisterPage/fbase';
+// import Message from './Message';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { dbService } from '../RegisterPage/fbase';
-import style from './ChatPage.module.css'
-import Message from './Message';
 import MessageList from './MessageList';
 import { chatdata } from './ChatData';
+import style from './ChatPage.module.css'
 
 function Chat() {
   const [messages, setMessages] = useState([]); // 모든 쪽지 내역
@@ -65,7 +65,7 @@ function Chat() {
 
   return (
     <div>
-      {messages.length > 0 &&
+      {/* {messages.length > 0 &&
         messages.map((message, idx) => (
           <Message
             key={idx}
@@ -73,7 +73,7 @@ function Chat() {
             user={message.user}
           />
         ))
-      }
+      } */}
 
       <div className={style.listContainer}>
         <div className={style.listHeader}>

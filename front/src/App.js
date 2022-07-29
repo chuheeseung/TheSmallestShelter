@@ -7,6 +7,7 @@ import ChatScreen from './Screen/ChatScreen';
 import Footer from "./components/Footer";
 import SignInScreen from './Screen/SignInScreen';
 import SignUpScreen from './Screen/SignUpScreen';
+import MyPage from './Screen/MyScreen';
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
                 <Route path="/" element={<ListviewScreen />} />
                 <Route path="/detail" element={<DetailScreen />} />
                 <Route path="/register" element={<RegisterScreen />} />
+                <Route path="/mypage" element={<MyPage />} />
                 <Route path="/chat" element={<ChatScreen />} />
                 <Route path="/signIn" element={<SignInScreen />} />
                 <Route path="/signUp" element={<SignUpScreen />} />
