@@ -1,8 +1,8 @@
 import React, { Component, useState } from 'react'
 import axios from "axios";
 import styled from "styled-components";
-import { AiOutlineStar } from "react-icons/ai";
-import { SiTinyletter } from "react-icons/si"
+import { AiOutlineStar, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { FiMail } from 'react-icons/fi';
 import { Checkbox } from 'antd';
 import 'antd/dist/antd.css';
 import {
@@ -19,7 +19,11 @@ function Banner({ imgUrl, name, age, gender, species }) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [isAdoptSuccess, setIsAdoptSuccess] = useState(true);
     const [isGroup, setIsGroup] = useState(true);
+    const [bookmark, setBookmark] = useState(false);
 
+    const handleBookmark = () => {
+        setBookmark(!bookmark);
+    };
 
     const onChange = (e) => {
         console.log(`checked = ${e.target.checked}`);
@@ -114,7 +118,16 @@ function Banner({ imgUrl, name, age, gender, species }) {
                         </PetInfo>
                     </Profile>
                     <ProfileIcon>
-                        <IconSet><AiOutlineStar size="24"/><SiTinyletter size="24"/></IconSet>      
+                        <IconSet>
+                            <div onClick={handleBookmark}>
+                                {bookmark ? (
+                                    <AiFillHeart size="24"/>
+                                ) : (
+                                    <AiOutlineHeart size="24"/>
+                                )}
+                            </div>
+                            <FiMail size="22" style={{marginLeft:"22px"}}/>
+                        </IconSet>      
                         {
                             isAdoptSuccess==true
                             ? <img src={SuccessMark} style={{width:"150px"}}/>
@@ -219,6 +232,7 @@ const ProfileIcon=styled.div`
 `;
 
 const IconSet=styled.div`
+    display:flex;
 `;
 
 export default Banner
