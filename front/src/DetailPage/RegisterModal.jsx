@@ -60,23 +60,20 @@ const RegisterModal = ({ isOpen, onCancel}) => {
     <ModalStyleContainer>
       <ReactModal isOpen={isOpen} style={customStyles}
       >
-        <div style={{ objectFit: "cover",display:"flex", flexWrap:"wrap" ,justifyContent:"space-between"}}>
-          <div style={{width:"80%", height: "550px",display:"flex"}}>
             <div>
+              <div style={{display: 'flex', justifyContent: 'space-between', backgroundColor:'#FBC22E', position: 'relative', top:'-20px', left:'-20px', width: '105%',padding:'30px'}}>
+                <TitleBanner>히스토리 추가</TitleBanner> 
+                <button onClick={handleClickCancel} style={{border:'none', background:'none'}}><IoCloseSharp/></button>
+              </div>
                 <form onSubmit={onSubmit} style={{display:"flex",justifyContent:"space-between"}}>
                     <RegisterPhoto>
                         <UploadStyle>
                             <UploadImg uploadImage={uploadImage} />
                         </UploadStyle>
                     </RegisterPhoto>
-                    <TextArea rows={4} value={historyContent} onChange={(e) => setHistoryContent(e.target.value)}style={{width:"500px", marginLeft:"50px", marginTop:"50px",}} placeholder="추억을 작성해주세요!"/>
-                    <SubmitButton type="submit" value="히스토리 등록하기" />
+                    <TextArea rows={4} value={historyContent} onChange={(e) => setHistoryContent(e.target.value)} style={{width:"500px", marginLeft:"50px", marginTop:"20px",}} placeholder="추억을 작성해주세요!"/>
+                    <SubmitButton type="submit" value="작성 완료" />
                 </form>
-            </div>
-          </div>
-          <div>
-            <button onClick={handleClickCancel} style={{border:'none', background:'none'}}><IoCloseSharp/></button>
-          </div>
         </div>
       </ReactModal>
     </ModalStyleContainer>
@@ -85,7 +82,13 @@ const RegisterModal = ({ isOpen, onCancel}) => {
 
 
 const ModalStyleContainer= styled.div`
+`;
 
+const TitleBanner= styled.div`
+  background-color:#FBC22E;
+  color:white;
+  font-family: 'SpoqaHanSansNeo-Bold';
+  font-weight: 700;
 `;
 
 const RegisterPhoto=styled.div`
@@ -121,7 +124,7 @@ const customStyles = {
 const SubmitButton=styled.input`    
     position: absolute;
     left:50%;
-    top: 90%;
+    top: 110%;
     transform:translate(-50%, 0);
     background-color: #FBC22E;
     text-align: center;
