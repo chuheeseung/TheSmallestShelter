@@ -1,6 +1,12 @@
 import React from 'react';
 
-function Message({message, user}) {
+function Message({message, sentUser, receivedUser}) {
+  const currUserId = 'JNVe6U0iGlP4A5Pm65UfXgZju0Z2';  // 현재 사용자 id (나중에 리코일로 가져올 것)
+
+  const isMessageMine = (sentUser) => {
+    return currUserId === sentUser.id;
+  }
+
   return (
     <div style={{ marginBottom: '3px', display: 'flex' }}>
       <img
@@ -8,13 +14,13 @@ function Message({message, user}) {
         width={48}
         height={48}
         className="mr-3"
-        src={user.image}
-        alt={user.name}
+        src={sentUser.image}
+        alt={sentUser.name}
       />
       <div style={{
-        backgroundColor: "#ECECEC"
+        backgroundColor: isMessageMine(sentUser) && "#ECECEC"
       }}>
-        <h6>{user.name}{" "}
+        <h6>{sentUser.name}{" "}
           
         </h6>
         <p>{message}</p>
