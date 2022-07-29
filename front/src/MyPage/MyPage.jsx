@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import MyInfo from "../MyPage/MyInfo";
 import "./MyPage.css";
 import MyLikeAnimal from "./MyLikeAnimal";
-import Chat from '../ChatPage/Chat';
 import styled from 'styled-components';
+import ChatHistory from "../ChatHistory/ChatHistory";
 
 
 class Tabs extends Component {
@@ -115,7 +115,7 @@ function MyPage() {
             <TabPanel><MyLikeAnimal/></TabPanel>
             <TabPanel>
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center',  margin: '0 auto'}}>
-              <Chat/>
+              <ChatHistory/>
             </div>
             </TabPanel>
           </TabPanels>
