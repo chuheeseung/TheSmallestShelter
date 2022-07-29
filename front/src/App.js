@@ -29,6 +29,7 @@ const App = () => {
                 <Route path="/signup/private" element={<PrivateSignUp />} />
                 <Route path="/signup/organization" element={<OrganizationSignUp/>} />
             </Routes>
+            <Footer/>
         </BrowserRouter>
     );
 };
