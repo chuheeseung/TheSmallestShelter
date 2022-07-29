@@ -3,13 +3,12 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { dbService } from '../RegisterPage/fbase';
-import style from './ChatPage.module.css'
-import Message from './Message';
-import MessageList from './MessageList';
+import style from "./ChatHistory.module.css";
+import ChatHistoryList from './ChatHistoryList';
 import { chatdata } from './ChatData';
 import { GrCheckbox, GrCheckboxSelected } from 'react-icons/gr';
 
-function Chat() {
+function ChatHistory() {
   const [messages, setMessages] = useState([]); // 모든 쪽지 내역
   const [message, setMessage] = useState([]);  // 받은/보낸 쪽지 내역
   const [clicked, setClicked] = useState("sent");  // 받은/보낸 쪽지 클릭 시 색 변경을 위해 (default: 보낸 쪽지)
@@ -20,15 +19,15 @@ function Chat() {
   
 
   useEffect(() => {
-    let tmp = [];
+    //let tmp = [];
     let chatArr = [];
     for(var i in chatdata[chatRoomId]) {
-      tmp.push(chatdata[chatRoomId][i]);
+      // tmp.push(chatdata[chatRoomId][i]);
       if (chatdata[chatRoomId][i].user.id === currUserId) {
         chatArr.push(chatdata[chatRoomId][i]);
       }
     }
-    setMessages(tmp)
+    // setMessages(tmp)
     setMessage(chatArr)
   }, [])
   
@@ -66,16 +65,6 @@ function Chat() {
 
   return (
     <div>
-      {messages.length > 0 &&
-        messages.map((message, idx) => (
-          <Message
-            key={idx}
-            message={message.content}
-            user={message.user}
-          />
-        ))
-      }
-
       <div className={style.listContainer}>
         <div className={style.listHeader}>
           <div style={{ fontWeight: 'bold' }}>쪽지 목록</div>
@@ -105,7 +94,7 @@ function Chat() {
 
         {message.length > 0 &&
           message.map((message, idx) => (
-            <MessageList
+            <ChatHistoryList
               key={idx}
               message={message.content}
               user={message.user}
@@ -119,4 +108,4 @@ function Chat() {
   );
 }
 
-export default Chat;
+export default ChatHistory;

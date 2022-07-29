@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import style from './ChatPage.module.css'
+import style from "./ChatHistory.module.css";
 import { GrCheckbox, GrCheckboxSelected } from 'react-icons/gr';
 
-function MessageList({ message, user, checkedItems, handleSingleChange }) {
+function ChatHistoryList({ message, user, checkedItems, handleSingleChange }) {
 
   return (
     <div className={style.listWrap}>
@@ -25,4 +25,4 @@ function MessageList({ message, user, checkedItems, handleSingleChange }) {
   );
 }
 
-export default MessageList;
+export default ChatHistoryList;

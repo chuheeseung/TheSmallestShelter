@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import style from "./ChatPage.module.css";
+import style from "./ChatHistory.module.css";
 import { GrFormClose } from 'react-icons/gr';
 import { dbService } from '../RegisterPage/fbase';
 import { child, push, ref, set } from 'firebase/database';

@@ -4,32 +4,18 @@ import { AiOutlineDown } from 'react-icons/ai';
 import { FiMail } from 'react-icons/fi';
 import style from "./LoggedIn.module.css";
 import userIcon from '../assets/Ellipse 36.png';
-import ChatDropDown from "../ChatPage/ChatDropDown";
 import { Link } from "react-router-dom";
 
 function LoggedIn() {
-  const [clickClose, setClickClose] = useState(false);
-
   return (
     <div>
+      {/* 쪽지 누면 마이페이지 쪽지 히스토리로 이동 */}
       <Link to="/chat"> <Badge count={6} size="small" color="red">
         <span className={style.message}>쪽지</span>
       </Badge></Link>
      
-
-      {/* 원래는 강아지 인스타에 있는 거지만, 임시로 여기에 드롭다운 메뉴 한 것 */}
-      <Dropdown 
-        overlay={<ChatDropDown/>}
-        placement="bottomLeft" 
-        trigger={['click']}
-      >
-        <Space style={{ verticalAlign: "middle" }}>
-          <FiMail style={{ marginLeft: '24px'}}  />
-        </Space>
-      </Dropdown>
-      
-
-
+      <Link to="/chat"style={{color: 'black'}}><FiMail style={{ marginLeft: '24px'}}/></Link>
+     
       <span style={{ margin: "0 24px", fontWeight: "bold" }}>|</span>
 
       <Dropdown overlay={Content} placement="bottomLeft">
