@@ -14,7 +14,7 @@ import Like from "./Like";
 import SuccessMark from "../assets/img/SuccessMark.png";
 import { Link, useNavigate } from 'react-router-dom';
 
-function Banner({ imgUrl, name, age, gender, species, likedItems, setLikedItems }) {
+function Banner({ isOrganization }) {
     const navigate = useNavigate();
     // 임시
     const currUser = {
@@ -37,17 +37,15 @@ function Banner({ imgUrl, name, age, gender, species, likedItems, setLikedItems 
     }
 
     const [anchorEl, setAnchorEl] = useState(null);
-    const [adopt,setAdopt] = useState(false);
-    const [isAdoptSuccess, setIsAdoptSuccess] = useState(true);
-    const [isOrganization, setIsOrganization] = useState(true);
-    const [bookmark, setBookmark] = useState(false);
-
-    const handleBookmark = () => {
-        setBookmark(!bookmark);
-    };
+    const [adoptCheck,setAdoptCheck] = useState("false");
+    const [isAdoptSuccess, setIsAdoptSuccess] = useState(false);
 
     const onChange = (e) => {
         console.log(`checked = ${e.target.checked}`);
+        let checked = `${e.target.checked}`
+        setAdoptCheck(checked);
+        console.log(checked);
+        setIsAdoptSuccess(true)
       };
 
     const handleClick = event => {
@@ -112,11 +110,14 @@ function Banner({ imgUrl, name, age, gender, species, likedItems, setLikedItems 
                                         성별
                                     </InfoItem1>
                                     <InfoItem1>
+                                        질병
+                                    </InfoItem1>
+                                    <InfoItem1>
                                         나이
                                     </InfoItem1>
                                     {
-                                        isOrganization==true
-                                        ? <div style={{marginTop:"19px"}}><Checkbox onChange={onChange}></Checkbox></div>
+                                        isOrganization==true //단체이면 입양상태 체크 가능
+                                        ? <div style={{marginTop:"19px"}}><Checkbox onChange={onChange}/></div>
                                         : null
                                     }
                                 </InfoParagraph>
@@ -126,6 +127,9 @@ function Banner({ imgUrl, name, age, gender, species, likedItems, setLikedItems 
                                     </InfoItem2>
                                     <InfoItem2>
                                         여
+                                    </InfoItem2>
+                                    <InfoItem2>
+                                        홍역,심장병
                                     </InfoItem2>
                                     <InfoItem2>
                                         2살
@@ -142,15 +146,16 @@ function Banner({ imgUrl, name, age, gender, species, likedItems, setLikedItems 
                     <ProfileIcon>
                         <IconSet>
                             {
-                                isOrganization==false
-                                ? null
-                                : <>
-                                    <FiMail size="22" style={{ marginLeft: "22px"}} onClick={() => navigate(`/chat/${chatRoomId}`)}/>
+                                isOrganization==false//입양희망자인 경우
+                                ?<>
+                                    <AiOutlineHeart/>
+                                    <Link to="/chat"><FiMail size="22" style={{marginLeft:"22px"}} onClick={() => navigate(`/chat/${chatRoomId}`)}/></Link>
                                 </>
+                                : null
                             }
                         </IconSet>     
                         {
-                            isAdoptSuccess==true
+                            adoptCheck=="false"//입양 되었을 때 마크 여부
                             ? <img src={SuccessMark} style={{width:"150px"}}/>
                             : null
                         }

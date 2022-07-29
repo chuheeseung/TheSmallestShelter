@@ -23,14 +23,15 @@ function DetailScreen() {
     // })
     //     .then((response) => console.log(response.data))
     // });
+    const [isOrganization, setIsOrganization] = useState(true);
     return (
         <div>
             <div>
-                <Banner likedItems={likedItems} setLikedItems={setLikedItems}/>
+                <Banner isOrganization={isOrganization}/>
                 <PostList>
                     <PostListTitle>
                         <div style={{display: 'flex', flex: 1}}>동물 히스토리</div>
-                        <HistoryRegister/>
+                        <HistoryRegister isOrganization={isOrganization}/>
                     </PostListTitle>
                     <PostContainer>
                         {
